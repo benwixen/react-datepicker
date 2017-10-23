@@ -230,9 +230,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      _this.setState({ inputValue: event.target.value });
 	      var date = (0, _date_utils.parseDate)(event.target.value, _this.props);
-	      if (date || !event.target.value) {
-	        _this.setSelected(date, event, true);
-	      }
+	      // if (date || !event.target.value) {
+	      //   this.setSelected(date, event, true)
+	      // }
+	      _this.setSelected(date, event, true);
 	    };
 
 	    _this.handleSelect = function (date, event) {
