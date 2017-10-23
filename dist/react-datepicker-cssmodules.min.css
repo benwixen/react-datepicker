@@ -52,7 +52,7 @@
   left: 50px; }
 
 :global .react-datepicker-popper {
-  z-index: 1; }
+  z-index: 3; }
   :global .react-datepicker-popper[data-placement^="bottom"] {
     margin-top: 10px; }
   :global .react-datepicker-popper[data-placement^="top"] {
