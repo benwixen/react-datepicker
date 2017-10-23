@@ -106,12 +106,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -338,12 +336,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -486,11 +482,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -528,12 +522,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -627,12 +619,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -650,45 +640,43 @@
 	var warning = emptyFunction;
 
 	if (false) {
-	  (function () {
-	    var printWarning = function printWarning(format) {
-	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        args[_key - 1] = arguments[_key];
+	  var printWarning = function printWarning(format) {
+	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      args[_key - 1] = arguments[_key];
+	    }
+
+	    var argIndex = 0;
+	    var message = 'Warning: ' + format.replace(/%s/g, function () {
+	      return args[argIndex++];
+	    });
+	    if (typeof console !== 'undefined') {
+	      console.error(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
+
+	  warning = function warning(condition, format) {
+	    if (format === undefined) {
+	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+	    }
+
+	    if (format.indexOf('Failed Composite propType: ') === 0) {
+	      return; // Ignore CompositeComponent proptype check.
+	    }
+
+	    if (!condition) {
+	      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	        args[_key2 - 2] = arguments[_key2];
 	      }
 
-	      var argIndex = 0;
-	      var message = 'Warning: ' + format.replace(/%s/g, function () {
-	        return args[argIndex++];
-	      });
-	      if (typeof console !== 'undefined') {
-	        console.error(message);
-	      }
-	      try {
-	        // --- Welcome to debugging React ---
-	        // This error was thrown as a convenience so that you can use this stack
-	        // to find the callsite that caused this warning to fire.
-	        throw new Error(message);
-	      } catch (x) {}
-	    };
-
-	    warning = function warning(condition, format) {
-	      if (format === undefined) {
-	        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-	      }
-
-	      if (format.indexOf('Failed Composite propType: ') === 0) {
-	        return; // Ignore CompositeComponent proptype check.
-	      }
-
-	      if (!condition) {
-	        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-	          args[_key2 - 2] = arguments[_key2];
-	        }
-
-	        printWarning.apply(undefined, [format].concat(args));
-	      }
-	    };
-	  })();
+	      printWarning.apply(undefined, [format].concat(args));
+	    }
+	  };
 	}
 
 	module.exports = warning;
@@ -701,11 +689,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -741,12 +727,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -772,11 +756,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -796,11 +778,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -855,12 +835,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -924,12 +902,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -1116,17 +1092,15 @@
 
 /***/ }),
 /* 15 */
-[538, 6],
+[541, 6],
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -1466,12 +1440,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -1499,12 +1471,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -1523,12 +1493,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -1703,12 +1671,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -1748,12 +1714,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -1811,12 +1775,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -1984,12 +1946,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -2007,12 +1967,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 */
 
 	'use strict';
@@ -2034,12 +1992,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 */
 
 	'use strict';
@@ -2047,6 +2003,7 @@
 	var emptyFunction = __webpack_require__(9);
 	var invariant = __webpack_require__(12);
 	var warning = __webpack_require__(8);
+	var assign = __webpack_require__(4);
 
 	var ReactPropTypesSecret = __webpack_require__(26);
 	var checkPropTypes = __webpack_require__(27);
@@ -2145,7 +2102,8 @@
 	    objectOf: createObjectOfTypeChecker,
 	    oneOf: createEnumTypeChecker,
 	    oneOfType: createUnionTypeChecker,
-	    shape: createShapeTypeChecker
+	    shape: createShapeTypeChecker,
+	    exact: createStrictShapeTypeChecker,
 	  };
 
 	  /**
@@ -2360,7 +2318,7 @@
 	      if (typeof checker !== 'function') {
 	        warning(
 	          false,
-	          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
+	          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
 	          'received %s at index %s.',
 	          getPostfixForTypeWarning(checker),
 	          i
@@ -2411,6 +2369,36 @@
 	      }
 	      return null;
 	    }
+	    return createChainableTypeChecker(validate);
+	  }
+
+	  function createStrictShapeTypeChecker(shapeTypes) {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      var propValue = props[propName];
+	      var propType = getPropType(propValue);
+	      if (propType !== 'object') {
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+	      }
+	      // We need to check all keys in case some are required but missing from
+	      // props.
+	      var allKeys = assign({}, props[propName], shapeTypes);
+	      for (var key in allKeys) {
+	        var checker = shapeTypes[key];
+	        if (!checker) {
+	          return new PropTypeError(
+	            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+	            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+	            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+	          );
+	        }
+	        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+	        if (error) {
+	          return error;
+	        }
+	      }
+	      return null;
+	    }
+
 	    return createChainableTypeChecker(validate);
 	  }
 
@@ -2552,12 +2540,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 */
 
 	'use strict';
@@ -2572,12 +2558,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 */
 
 	'use strict';
@@ -2611,7 +2595,7 @@
 	        try {
 	          // This is intentionally an invariant that gets caught. It's the same
 	          // behavior as without this statement except with a better message.
-	          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', componentName || 'React class', location, typeSpecName);
+	          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
 	          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
 	        } catch (ex) {
 	          error = ex;
@@ -2639,30 +2623,26 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
 	'use strict';
 
-	module.exports = '15.6.1';
+	module.exports = '15.6.2';
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -2684,12 +2664,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -3562,12 +3540,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	'use strict';
@@ -3613,12 +3589,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -3728,12 +3702,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -3929,12 +3901,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -4142,12 +4112,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -4164,12 +4132,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -4254,12 +4220,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -4332,12 +4296,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -4720,12 +4682,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -4858,12 +4818,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -5136,12 +5094,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -5393,12 +5349,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -5623,12 +5577,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -5685,7 +5637,9 @@
 	  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
 	    var fakeNode = document.createElement('react');
 	    ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
-	      var boundFunc = func.bind(null, a);
+	      var boundFunc = function () {
+	        func(a);
+	      };
 	      var evtType = 'react-' + name;
 	      fakeNode.addEventListener(evtType, boundFunc, false);
 	      var evt = document.createEvent('Event');
@@ -5703,12 +5657,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -5765,12 +5717,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -5801,11 +5751,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -5840,12 +5788,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -5936,17 +5882,15 @@
 
 /***/ }),
 /* 50 */
-[538, 35],
+[541, 35],
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -5978,12 +5922,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -6018,12 +5960,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -6199,6 +6139,33 @@
 
 	SyntheticEvent.Interface = EventInterface;
 
+	/**
+	 * Helper to reduce boilerplate when creating subclasses.
+	 *
+	 * @param {function} Class
+	 * @param {?object} Interface
+	 */
+	SyntheticEvent.augmentClass = function (Class, Interface) {
+	  var Super = this;
+
+	  var E = function () {};
+	  E.prototype = Super.prototype;
+	  var prototype = new E();
+
+	  _assign(prototype, Class.prototype);
+	  Class.prototype = prototype;
+	  Class.prototype.constructor = Class;
+
+	  Class.Interface = _assign({}, Super.Interface, Interface);
+	  Class.augmentClass = Super.augmentClass;
+
+	  PooledClass.addPoolingTo(Class, PooledClass.fourArgumentPooler);
+	};
+
+	/** Proxying after everything set on SyntheticEvent
+	  * to resolve Proxy issue on some WebKit browsers
+	  * in which some Event properties are set to undefined (GH#10010)
+	  */
 	if (false) {
 	  if (isProxySupported) {
 	    /*eslint-disable no-func-assign */
@@ -6222,28 +6189,6 @@
 	    /*eslint-enable no-func-assign */
 	  }
 	}
-	/**
-	 * Helper to reduce boilerplate when creating subclasses.
-	 *
-	 * @param {function} Class
-	 * @param {?object} Interface
-	 */
-	SyntheticEvent.augmentClass = function (Class, Interface) {
-	  var Super = this;
-
-	  var E = function () {};
-	  E.prototype = Super.prototype;
-	  var prototype = new E();
-
-	  _assign(prototype, Class.prototype);
-	  Class.prototype = prototype;
-	  Class.prototype.constructor = Class;
-
-	  Class.Interface = _assign({}, Super.Interface, Interface);
-	  Class.augmentClass = Super.augmentClass;
-
-	  PooledClass.addPoolingTo(Class, PooledClass.fourArgumentPooler);
-	};
 
 	PooledClass.addPoolingTo(SyntheticEvent, PooledClass.fourArgumentPooler);
 
@@ -6288,12 +6233,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -6329,12 +6272,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -6459,7 +6400,7 @@
 	  // IE9 claims to support the input event but fails to trigger it when
 	  // deleting text, so we ignore its input events.
 
-	  isInputEventSupported = isEventSupported('input') && (!('documentMode' in document) || document.documentMode > 9);
+	  isInputEventSupported = isEventSupported('input') && (!document.documentMode || document.documentMode > 9);
 	}
 
 	/**
@@ -6645,12 +6586,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -6858,7 +6797,7 @@
 	 * if no updates are currently being performed.
 	 */
 	function asap(callback, context) {
-	  !batchingStrategy.isBatchingUpdates ?  false ? invariant(false, 'ReactUpdates.asap: Can\'t enqueue an asap callback in a context whereupdates are not being batched.') : _prodInvariant('125') : void 0;
+	  invariant(batchingStrategy.isBatchingUpdates, "ReactUpdates.asap: Can't enqueue an asap callback in a context where" + 'updates are not being batched.');
 	  asapCallbackQueue.enqueue(callback, context);
 	  asapEnqueued = true;
 	}
@@ -6900,12 +6839,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7023,12 +6960,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7049,12 +6984,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -7219,12 +7152,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7312,12 +7243,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7409,12 +7338,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2016-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2016-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7437,12 +7364,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7669,12 +7594,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -7697,7 +7620,7 @@
 	}
 
 	function detachTracker(inst) {
-	  delete inst._wrapperState.valueTracker;
+	  inst._wrapperState.valueTracker = null;
 	}
 
 	function getValueFromNode(node) {
@@ -7796,12 +7719,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -7835,12 +7756,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -7899,12 +7818,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7954,12 +7871,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -7984,12 +7899,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8086,12 +7999,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8162,12 +8073,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8225,12 +8134,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8254,12 +8161,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8301,12 +8206,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8355,6 +8258,7 @@
 	    contentEditable: 0,
 	    contextMenu: 0,
 	    controls: HAS_BOOLEAN_VALUE,
+	    controlsList: 0,
 	    coords: 0,
 	    crossOrigin: 0,
 	    data: 0, // For `<object />` acts as `src`.
@@ -8541,12 +8445,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8573,12 +8475,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8803,12 +8703,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8925,12 +8823,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -8949,12 +8845,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -9051,12 +8945,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -9087,12 +8979,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -9143,12 +9033,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2016-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2016-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * Based on the escape-html library, which is used under the MIT License below:
 	 *
@@ -9269,12 +9157,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -9322,11 +9208,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -9410,11 +9294,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -9541,11 +9423,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -9637,12 +9517,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -9674,12 +9552,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -10440,6 +10316,10 @@
 	        // happen after `_updateDOMProperties`. Otherwise HTML5 input validations
 	        // raise warnings and prevent the new value from being assigned.
 	        ReactDOMInput.updateWrapper(this);
+
+	        // We also check that we haven't missed a value update, such as a
+	        // Radio group shifting the checked value to another named radio input.
+	        inputValueTracking.updateValueIfChanged(this);
 	        break;
 	      case 'textarea':
 	        ReactDOMTextarea.updateWrapper(this);
@@ -10688,12 +10568,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -10717,11 +10595,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -10747,12 +10623,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -10966,12 +10840,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -10990,6 +10862,7 @@
 	  boxFlexGroup: true,
 	  boxOrdinalGroup: true,
 	  columnCount: true,
+	  columns: true,
 	  flex: true,
 	  flexGrow: true,
 	  flexPositive: true,
@@ -11125,11 +10998,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -11171,11 +11042,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -11204,12 +11073,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -11288,11 +11155,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -11333,11 +11198,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -11368,11 +11231,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 * @typechecks static-only
@@ -11401,12 +11262,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -11640,12 +11499,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -11670,12 +11527,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -11998,12 +11853,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -12034,12 +11887,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -12139,12 +11990,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -12430,12 +12279,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -12572,12 +12419,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -12593,12 +12438,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -12719,12 +12562,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -12923,12 +12764,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -13087,12 +12926,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -13537,12 +13374,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -13585,12 +13420,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -13635,12 +13468,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -13983,12 +13814,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -14116,12 +13945,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -15020,12 +14847,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -15065,11 +14890,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 * 
@@ -15136,12 +14959,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -15182,12 +15003,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -15216,12 +15035,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -15288,12 +15105,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -15315,12 +15130,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -15499,12 +15312,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2016-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2016-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -15882,12 +15693,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -15963,12 +15772,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -16057,12 +15864,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -16200,12 +16005,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -16438,12 +16241,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -16813,12 +16614,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -16877,12 +16676,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17017,12 +16814,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17183,12 +16978,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17255,12 +17048,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17418,17 +17209,8 @@
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -17503,11 +17285,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -17545,12 +17325,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17583,12 +17361,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17765,12 +17541,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -17892,12 +17666,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -18108,12 +17880,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -18189,11 +17959,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -18233,11 +18001,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -18262,11 +18028,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -18291,11 +18055,9 @@
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -18331,12 +18093,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -18637,12 +18397,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -18829,12 +18587,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -19059,12 +18815,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19102,12 +18856,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19144,12 +18896,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19184,12 +18934,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19272,12 +19020,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19326,12 +19072,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19442,12 +19186,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19482,12 +19224,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19531,12 +19271,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19574,12 +19312,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -19629,12 +19365,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20171,12 +19905,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20208,12 +19940,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20231,12 +19961,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20285,12 +20013,10 @@
 /***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -20335,12 +20061,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20399,12 +20123,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20433,12 +20155,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 
@@ -20468,7 +20188,7 @@
 
 	var _example_components2 = _interopRequireDefault(_example_components);
 
-	var _hero_example = __webpack_require__(537);
+	var _hero_example = __webpack_require__(540);
 
 	var _hero_example2 = _interopRequireDefault(_hero_example);
 
@@ -20623,165 +20343,169 @@
 
 	var _default2 = _interopRequireDefault(_default);
 
-	var _code_example_component = __webpack_require__(496);
+	var _code_example_component = __webpack_require__(498);
 
 	var _code_example_component2 = _interopRequireDefault(_code_example_component);
 
-	var _custom_date_format = __webpack_require__(497);
+	var _custom_date_format = __webpack_require__(499);
 
 	var _custom_date_format2 = _interopRequireDefault(_custom_date_format);
 
-	var _custom_class_name = __webpack_require__(498);
+	var _custom_class_name = __webpack_require__(500);
 
 	var _custom_class_name2 = _interopRequireDefault(_custom_class_name);
 
-	var _custom_calendar_class_name = __webpack_require__(499);
+	var _custom_calendar_class_name = __webpack_require__(501);
 
 	var _custom_calendar_class_name2 = _interopRequireDefault(_custom_calendar_class_name);
 
-	var _custom_day_class_names = __webpack_require__(500);
+	var _custom_day_class_names = __webpack_require__(502);
 
 	var _custom_day_class_names2 = _interopRequireDefault(_custom_day_class_names);
 
-	var _placeholder_text = __webpack_require__(501);
+	var _placeholder_text = __webpack_require__(503);
 
 	var _placeholder_text2 = _interopRequireDefault(_placeholder_text);
 
-	var _specific_date_range = __webpack_require__(502);
+	var _specific_date_range = __webpack_require__(504);
 
 	var _specific_date_range2 = _interopRequireDefault(_specific_date_range);
 
-	var _locale = __webpack_require__(503);
+	var _locale = __webpack_require__(505);
 
 	var _locale2 = _interopRequireDefault(_locale);
 
-	var _exclude_dates = __webpack_require__(504);
+	var _exclude_dates = __webpack_require__(506);
 
 	var _exclude_dates2 = _interopRequireDefault(_exclude_dates);
 
-	var _highlight_dates = __webpack_require__(505);
+	var _highlight_dates = __webpack_require__(507);
 
 	var _highlight_dates2 = _interopRequireDefault(_highlight_dates);
 
-	var _highlight_dates_with_ranges = __webpack_require__(506);
+	var _highlight_dates_with_ranges = __webpack_require__(508);
 
 	var _highlight_dates_with_ranges2 = _interopRequireDefault(_highlight_dates_with_ranges);
 
-	var _include_dates = __webpack_require__(507);
+	var _include_dates = __webpack_require__(509);
 
 	var _include_dates2 = _interopRequireDefault(_include_dates);
 
-	var _filter_dates = __webpack_require__(508);
+	var _filter_dates = __webpack_require__(510);
 
 	var _filter_dates2 = _interopRequireDefault(_filter_dates);
 
-	var _disabled = __webpack_require__(509);
+	var _disabled = __webpack_require__(511);
 
 	var _disabled2 = _interopRequireDefault(_disabled);
 
-	var _disabled_keyboard_navigation = __webpack_require__(510);
+	var _disabled_keyboard_navigation = __webpack_require__(512);
 
 	var _disabled_keyboard_navigation2 = _interopRequireDefault(_disabled_keyboard_navigation);
 
-	var _clear_input = __webpack_require__(511);
+	var _clear_input = __webpack_require__(513);
 
 	var _clear_input2 = _interopRequireDefault(_clear_input);
 
-	var _on_blur_callbacks = __webpack_require__(512);
+	var _on_blur_callbacks = __webpack_require__(514);
 
 	var _on_blur_callbacks2 = _interopRequireDefault(_on_blur_callbacks);
 
-	var _configurePopper = __webpack_require__(513);
+	var _configurePopper = __webpack_require__(515);
 
 	var _configurePopper2 = _interopRequireDefault(_configurePopper);
 
-	var _date_range = __webpack_require__(514);
+	var _date_range = __webpack_require__(516);
 
 	var _date_range2 = _interopRequireDefault(_date_range);
 
-	var _tab_index = __webpack_require__(515);
+	var _tab_index = __webpack_require__(517);
 
 	var _tab_index2 = _interopRequireDefault(_tab_index);
 
-	var _year_dropdown = __webpack_require__(516);
+	var _year_dropdown = __webpack_require__(518);
 
 	var _year_dropdown2 = _interopRequireDefault(_year_dropdown);
 
-	var _month_dropdown = __webpack_require__(517);
+	var _month_dropdown = __webpack_require__(519);
 
 	var _month_dropdown2 = _interopRequireDefault(_month_dropdown);
 
-	var _year_select_dropdown = __webpack_require__(518);
+	var _year_select_dropdown = __webpack_require__(520);
 
 	var _year_select_dropdown2 = _interopRequireDefault(_year_select_dropdown);
 
-	var _today = __webpack_require__(519);
+	var _today = __webpack_require__(521);
 
 	var _today2 = _interopRequireDefault(_today);
 
-	var _timezone_date = __webpack_require__(520);
+	var _timezone_date = __webpack_require__(522);
 
 	var _timezone_date2 = _interopRequireDefault(_timezone_date);
 
-	var _inline = __webpack_require__(521);
+	var _inline = __webpack_require__(523);
 
 	var _inline2 = _interopRequireDefault(_inline);
 
-	var _open_to_date = __webpack_require__(522);
+	var _open_to_date = __webpack_require__(524);
 
 	var _open_to_date2 = _interopRequireDefault(_open_to_date);
 
-	var _fixed_calendar = __webpack_require__(523);
+	var _fixed_calendar = __webpack_require__(525);
 
 	var _fixed_calendar2 = _interopRequireDefault(_fixed_calendar);
 
-	var _week_numbers = __webpack_require__(524);
+	var _week_numbers = __webpack_require__(526);
 
 	var _week_numbers2 = _interopRequireDefault(_week_numbers);
 
-	var _custom_input = __webpack_require__(525);
+	var _custom_input = __webpack_require__(527);
 
 	var _custom_input2 = _interopRequireDefault(_custom_input);
 
-	var _multi_month = __webpack_require__(526);
+	var _multi_month = __webpack_require__(528);
 
 	var _multi_month2 = _interopRequireDefault(_multi_month);
 
-	var _multi_month_drp = __webpack_require__(527);
+	var _multi_month_drp = __webpack_require__(529);
 
 	var _multi_month_drp2 = _interopRequireDefault(_multi_month_drp);
 
-	var _children = __webpack_require__(528);
+	var _children = __webpack_require__(530);
 
 	var _children2 = _interopRequireDefault(_children);
 
-	var _portal = __webpack_require__(529);
+	var _portal = __webpack_require__(531);
 
 	var _portal2 = _interopRequireDefault(_portal);
 
-	var _inline_portal = __webpack_require__(530);
+	var _inline_portal = __webpack_require__(532);
 
 	var _inline_portal2 = _interopRequireDefault(_inline_portal);
 
-	var _raw_change = __webpack_require__(531);
+	var _raw_change = __webpack_require__(533);
 
 	var _raw_change2 = _interopRequireDefault(_raw_change);
 
-	var _show_time = __webpack_require__(532);
+	var _show_time = __webpack_require__(534);
 
 	var _show_time2 = _interopRequireDefault(_show_time);
 
-	var _exclude_times = __webpack_require__(533);
+	var _exclude_times = __webpack_require__(535);
 
 	var _exclude_times2 = _interopRequireDefault(_exclude_times);
 
-	var _exclude_time_period = __webpack_require__(534);
+	var _exclude_time_period = __webpack_require__(536);
 
 	var _exclude_time_period2 = _interopRequireDefault(_exclude_time_period);
 
-	__webpack_require__(535);
+	var _dont_close_onSelect = __webpack_require__(537);
 
-	__webpack_require__(536);
+	var _dont_close_onSelect2 = _interopRequireDefault(_dont_close_onSelect);
+
+	__webpack_require__(538);
+
+	__webpack_require__(539);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20808,6 +20532,15 @@
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = exampleComponents.__proto__ || Object.getPrototypeOf(exampleComponents)).call.apply(_ref, [this].concat(args))), _this), _this.examples = [{
 	      title: 'Default',
 	      component: _react2.default.createElement(_default2.default, null)
+	    }, {
+	      title: 'Select Time',
+	      component: _react2.default.createElement(_show_time2.default, null)
+	    }, {
+	      title: 'Exclude Times',
+	      component: _react2.default.createElement(_exclude_times2.default, null)
+	    }, {
+	      title: 'Specific Time Range',
+	      component: _react2.default.createElement(_exclude_time_period2.default, null)
 	    }, {
 	      title: 'Custom date format',
 	      component: _react2.default.createElement(_custom_date_format2.default, null)
@@ -20914,14 +20647,8 @@
 	      title: 'Get raw input value on change',
 	      component: _react2.default.createElement(_raw_change2.default, null)
 	    }, {
-	      title: 'Select Time',
-	      component: _react2.default.createElement(_show_time2.default, null)
-	    }, {
-	      title: 'Exclude Times',
-	      component: _react2.default.createElement(_exclude_times2.default, null)
-	    }, {
-	      title: 'Specific Time Range',
-	      component: _react2.default.createElement(_exclude_time_period2.default, null)
+	      title: 'Don\'t hide calendar on date selection',
+	      component: _react2.default.createElement(_dont_close_onSelect2.default, null)
 	    }], _this.renderExamples = function () {
 	      return _this.examples.map(function (example, index) {
 	        return _react2.default.createElement(
@@ -38627,25 +38354,25 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _popper_component = __webpack_require__(487);
+	var _popper_component = __webpack_require__(491);
 
 	var _popper_component2 = _interopRequireDefault(_popper_component);
 
-	var _classnames2 = __webpack_require__(476);
+	var _classnames2 = __webpack_require__(479);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _date_utils = __webpack_require__(484);
+	var _date_utils = __webpack_require__(488);
 
 	var _moment = __webpack_require__(354);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _reactOnclickoutside = __webpack_require__(477);
+	var _reactOnclickoutside = __webpack_require__(480);
 
 	var _reactOnclickoutside2 = _interopRequireDefault(_reactOnclickoutside);
 
@@ -38673,7 +38400,8 @@
 	    key: 'defaultProps',
 	    get: function get() {
 	      return {
-	        dateFormat: 'LLL',
+	        allowSameDay: false,
+	        dateFormat: 'L',
 	        dateFormatCalendar: 'MMMM YYYY',
 	        onChange: function onChange() {},
 
@@ -38690,6 +38418,7 @@
 	        utcOffset: (0, _moment2.default)().utcOffset(),
 	        monthsShown: 1,
 	        withPortal: false,
+	        shouldCloseOnSelect: true,
 	        showTimeSelect: false,
 	        timeIntervals: 30
 	      };
@@ -38701,8 +38430,12 @@
 
 	    var _this = _possibleConstructorReturn(this, (DatePicker.__proto__ || Object.getPrototypeOf(DatePicker)).call(this, props));
 
+	    _this.getPreSelection = function () {
+	      return _this.props.openToDate ? (0, _moment2.default)(_this.props.openToDate) : _this.props.selectsEnd && _this.props.startDate ? (0, _moment2.default)(_this.props.startDate) : _this.props.selectsStart && _this.props.endDate ? (0, _moment2.default)(_this.props.endDate) : typeof _this.props.utcOffset !== 'undefined' ? _moment2.default.utc().utcOffset(_this.props.utcOffset) : (0, _moment2.default)();
+	    };
+
 	    _this.calcInitialState = function () {
-	      var defaultPreSelection = _this.props.openToDate ? (0, _moment2.default)(_this.props.openToDate) : _this.props.selectsEnd && _this.props.startDate ? (0, _moment2.default)(_this.props.startDate) : _this.props.selectsStart && _this.props.endDate ? (0, _moment2.default)(_this.props.endDate) : typeof _this.props.utcOffset !== 'undefined' ? _moment2.default.utc().utcOffset(_this.props.utcOffset) : (0, _moment2.default)();
+	      var defaultPreSelection = _this.getPreSelection();
 	      var minDate = (0, _date_utils.getEffectiveMinDate)(_this.props);
 	      var maxDate = (0, _date_utils.getEffectiveMaxDate)(_this.props);
 	      var boundedPreSelection = minDate && defaultPreSelection.isBefore(minDate) ? minDate : maxDate && defaultPreSelection.isAfter(maxDate) ? maxDate : defaultPreSelection;
@@ -38801,7 +38534,6 @@
 	      } else if (!_this.props.inline) {
 	        _this.setOpen(false);
 	      }
-	      if (!_this.props.showTimeSelect) _this.setOpen(false);
 	    };
 
 	    _this.setSelected = function (date, event, keepInput) {
@@ -38845,7 +38577,7 @@
 	    };
 
 	    _this.handleTimeChange = function (time) {
-	      var selected = _this.props.selected ? _this.props.selected : (0, _moment2.default)();
+	      var selected = _this.props.selected ? _this.props.selected : _this.getPreSelection();
 	      var changedDate = selected.clone().set({
 	        hour: time.get('hours'),
 	        minute: time.get('minutes')
@@ -38979,13 +38711,16 @@
 	          monthsShown: _this.props.monthsShown,
 	          onDropdownFocus: _this.handleDropdownFocus,
 	          onMonthChange: _this.props.onMonthChange,
+	          dayClassName: _this.props.dayClassName,
 	          showTimeSelect: _this.props.showTimeSelect,
 	          onTimeChange: _this.handleTimeChange,
+	          timeFormat: _this.props.timeFormat,
 	          timeIntervals: _this.props.timeIntervals,
 	          minTime: _this.props.minTime,
 	          maxTime: _this.props.maxTime,
 	          excludeTimes: _this.props.excludeTimes,
-	          className: _this.props.calendarClassName },
+	          className: _this.props.calendarClassName,
+	          yearDropdownItemNumber: _this.props.yearDropdownItemNumber },
 	        _this.props.children
 	      );
 	    };
@@ -39153,8 +38888,12 @@
 	  useWeekdaysShort: _propTypes2.default.bool,
 	  utcOffset: _propTypes2.default.number,
 	  value: _propTypes2.default.string,
+	  weekLabel: _propTypes2.default.string,
 	  withPortal: _propTypes2.default.bool,
+	  yearDropdownItemNumber: _propTypes2.default.number,
+	  shouldCloseOnSelect: _propTypes2.default.bool,
 	  showTimeSelect: _propTypes2.default.bool,
+	  timeFormat: _propTypes2.default.string,
 	  timeIntervals: _propTypes2.default.number,
 	  minTime: _propTypes2.default.object,
 	  maxTime: _propTypes2.default.object,
@@ -39178,19 +38917,19 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _year_dropdown = __webpack_require__(472);
+	var _year_dropdown = __webpack_require__(475);
 
 	var _year_dropdown2 = _interopRequireDefault(_year_dropdown);
 
-	var _month_dropdown = __webpack_require__(479);
+	var _month_dropdown = __webpack_require__(483);
 
 	var _month_dropdown2 = _interopRequireDefault(_month_dropdown);
 
-	var _month = __webpack_require__(481);
+	var _month = __webpack_require__(485);
 
 	var _month2 = _interopRequireDefault(_month);
 
-	var _time = __webpack_require__(486);
+	var _time = __webpack_require__(490);
 
 	var _time2 = _interopRequireDefault(_time);
 
@@ -39198,15 +38937,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _classnames = __webpack_require__(476);
+	var _classnames = __webpack_require__(479);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _date_utils = __webpack_require__(484);
+	var _date_utils = __webpack_require__(488);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39452,7 +39191,9 @@
 	        var monthKey = 'month-' + i;
 	        monthList.push(_react2.default.createElement(
 	          'div',
-	          { key: monthKey, className: 'react-datepicker__month-container' },
+	          { key: monthKey, ref: function ref(div) {
+	              _this.monthContainer = div;
+	            }, className: 'react-datepicker__month-container' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'react-datepicker__header' },
@@ -39506,7 +39247,8 @@
 	      if (_this.props.showTimeSelect) {
 	        return _react2.default.createElement(_time2.default, {
 	          selected: _this.props.selected,
-	          onTimeChange: _this.props.onTimeChange,
+	          onChange: _this.props.onTimeChange,
+	          format: _this.props.timeFormat,
 	          intervals: _this.props.timeIntervals,
 	          minTime: _this.props.minTime,
 	          maxTime: _this.props.maxTime,
@@ -39514,7 +39256,8 @@
 	          todayButton: _this.props.todayButton,
 	          showMonthDropdown: _this.props.showMonthDropdown,
 	          showYearDropdown: _this.props.showYearDropdown,
-	          withPortal: _this.props.withPortal });
+	          withPortal: _this.props.withPortal,
+	          monthRef: _this.state.monthContainer });
 	      } else {
 	        return;
 	      }
@@ -39522,12 +39265,25 @@
 
 	    _this.state = {
 	      date: _this.localizeMoment(_this.getDateInView()),
-	      selectingDate: null
+	      selectingDate: null,
+	      monthContainer: _this.monthContainer
 	    };
 	    return _this;
 	  }
 
 	  _createClass(Calendar, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      /* monthContainer height is needed in time component to determine the height for the ul in the time component. setState here so height is given after final component layout is rendered */
+	      if (this.props.showTimeSelect) {
+	        this.assignMonthContainer = function () {
+	          _this2.setState({ monthContainer: _this2.monthContainer });
+	        }();
+	      }
+	    }
+	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
 	      if (nextProps.preSelection && !(0, _date_utils.isSameDay)(nextProps.preSelection, this.props.preSelection)) {
@@ -39583,7 +39339,9 @@
 	  forceShowMonthNavigation: _propTypes2.default.bool,
 	  onDropdownFocus: _propTypes2.default.func,
 	  onSelect: _propTypes2.default.func.isRequired,
+	  onWeekSelect: _propTypes2.default.func,
 	  showTimeSelect: _propTypes2.default.bool,
+	  timeFormat: _propTypes2.default.string,
 	  timeIntervals: _propTypes2.default.number,
 	  onTimeChange: _propTypes2.default.func,
 	  minTime: _propTypes2.default.object,
@@ -39601,8 +39359,11 @@
 	  showYearDropdown: _propTypes2.default.bool,
 	  startDate: _propTypes2.default.object,
 	  todayButton: _propTypes2.default.string,
+	  useWeekdaysShort: _propTypes2.default.bool,
 	  withPortal: _propTypes2.default.bool,
-	  utcOffset: _propTypes2.default.number
+	  utcOffset: _propTypes2.default.number,
+	  weekLabel: _propTypes2.default.string,
+	  yearDropdownItemNumber: _propTypes2.default.number
 	};
 	exports.default = Calendar;
 
@@ -39610,8 +39371,8 @@
 /* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
-	//! version : 2.18.1
+	var require;/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
+	//! version : 2.19.1
 	//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 	//! license : MIT
 	//! momentjs.com
@@ -39645,12 +39406,17 @@
 	}
 
 	function isObjectEmpty(obj) {
-	    var k;
-	    for (k in obj) {
-	        // even if its not own property I'd still call it non-empty
-	        return false;
+	    if (Object.getOwnPropertyNames) {
+	        return (Object.getOwnPropertyNames(obj).length === 0);
+	    } else {
+	        var k;
+	        for (k in obj) {
+	            if (obj.hasOwnProperty(k)) {
+	                return false;
+	            }
+	        }
+	        return true;
 	    }
-	    return true;
 	}
 
 	function isUndefined(input) {
@@ -39744,12 +39510,10 @@
 	    };
 	}
 
-	var some$1 = some;
-
 	function isValid(m) {
 	    if (m._isValid == null) {
 	        var flags = getParsingFlags(m);
-	        var parsedParts = some$1.call(flags.parsedDateParts, function (i) {
+	        var parsedParts = some.call(flags.parsedDateParts, function (i) {
 	            return i != null;
 	        });
 	        var isNowValid = !isNaN(m._d.getTime()) &&
@@ -39757,6 +39521,7 @@
 	            !flags.empty &&
 	            !flags.invalidMonth &&
 	            !flags.invalidWeekday &&
+	            !flags.weekdayMismatch &&
 	            !flags.nullInput &&
 	            !flags.invalidFormat &&
 	            !flags.userInvalidated &&
@@ -40022,8 +39787,6 @@
 	    };
 	}
 
-	var keys$1 = keys;
-
 	var defaultCalendar = {
 	    sameDay : '[Today at] LT',
 	    nextDay : '[Tomorrow at] LT',
@@ -40147,56 +39910,6 @@
 	        return a.priority - b.priority;
 	    });
 	    return units;
-	}
-
-	function makeGetSet (unit, keepTime) {
-	    return function (value) {
-	        if (value != null) {
-	            set$1(this, unit, value);
-	            hooks.updateOffset(this, keepTime);
-	            return this;
-	        } else {
-	            return get(this, unit);
-	        }
-	    };
-	}
-
-	function get (mom, unit) {
-	    return mom.isValid() ?
-	        mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
-	}
-
-	function set$1 (mom, unit, value) {
-	    if (mom.isValid()) {
-	        mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
-	    }
-	}
-
-	// MOMENTS
-
-	function stringGet (units) {
-	    units = normalizeUnits(units);
-	    if (isFunction(this[units])) {
-	        return this[units]();
-	    }
-	    return this;
-	}
-
-
-	function stringSet (units, value) {
-	    if (typeof units === 'object') {
-	        units = normalizeObjectUnits(units);
-	        var prioritized = getPrioritizedUnits(units);
-	        for (var i = 0; i < prioritized.length; i++) {
-	            this[prioritized[i].unit](units[prioritized[i].unit]);
-	        }
-	    } else {
-	        units = normalizeUnits(units);
-	        if (isFunction(this[units])) {
-	            return this[units](value);
-	        }
-	    }
-	    return this;
 	}
 
 	function zeroFill(number, targetLength, forceSign) {
@@ -40389,6 +40102,131 @@
 	var WEEK = 7;
 	var WEEKDAY = 8;
 
+	// FORMATTING
+
+	addFormatToken('Y', 0, 0, function () {
+	    var y = this.year();
+	    return y <= 9999 ? '' + y : '+' + y;
+	});
+
+	addFormatToken(0, ['YY', 2], 0, function () {
+	    return this.year() % 100;
+	});
+
+	addFormatToken(0, ['YYYY',   4],       0, 'year');
+	addFormatToken(0, ['YYYYY',  5],       0, 'year');
+	addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
+
+	// ALIASES
+
+	addUnitAlias('year', 'y');
+
+	// PRIORITIES
+
+	addUnitPriority('year', 1);
+
+	// PARSING
+
+	addRegexToken('Y',      matchSigned);
+	addRegexToken('YY',     match1to2, match2);
+	addRegexToken('YYYY',   match1to4, match4);
+	addRegexToken('YYYYY',  match1to6, match6);
+	addRegexToken('YYYYYY', match1to6, match6);
+
+	addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+	addParseToken('YYYY', function (input, array) {
+	    array[YEAR] = input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
+	});
+	addParseToken('YY', function (input, array) {
+	    array[YEAR] = hooks.parseTwoDigitYear(input);
+	});
+	addParseToken('Y', function (input, array) {
+	    array[YEAR] = parseInt(input, 10);
+	});
+
+	// HELPERS
+
+	function daysInYear(year) {
+	    return isLeapYear(year) ? 366 : 365;
+	}
+
+	function isLeapYear(year) {
+	    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+	}
+
+	// HOOKS
+
+	hooks.parseTwoDigitYear = function (input) {
+	    return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
+	};
+
+	// MOMENTS
+
+	var getSetYear = makeGetSet('FullYear', true);
+
+	function getIsLeapYear () {
+	    return isLeapYear(this.year());
+	}
+
+	function makeGetSet (unit, keepTime) {
+	    return function (value) {
+	        if (value != null) {
+	            set$1(this, unit, value);
+	            hooks.updateOffset(this, keepTime);
+	            return this;
+	        } else {
+	            return get(this, unit);
+	        }
+	    };
+	}
+
+	function get (mom, unit) {
+	    return mom.isValid() ?
+	        mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
+	}
+
+	function set$1 (mom, unit, value) {
+	    if (mom.isValid() && !isNaN(value)) {
+	        if (unit === 'FullYear' && isLeapYear(mom.year())) {
+	            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value, mom.month(), daysInMonth(value, mom.month()));
+	        }
+	        else {
+	            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
+	        }
+	    }
+	}
+
+	// MOMENTS
+
+	function stringGet (units) {
+	    units = normalizeUnits(units);
+	    if (isFunction(this[units])) {
+	        return this[units]();
+	    }
+	    return this;
+	}
+
+
+	function stringSet (units, value) {
+	    if (typeof units === 'object') {
+	        units = normalizeObjectUnits(units);
+	        var prioritized = getPrioritizedUnits(units);
+	        for (var i = 0; i < prioritized.length; i++) {
+	            this[prioritized[i].unit](units[prioritized[i].unit]);
+	        }
+	    } else {
+	        units = normalizeUnits(units);
+	        if (isFunction(this[units])) {
+	            return this[units](value);
+	        }
+	    }
+	    return this;
+	}
+
+	function mod(n, x) {
+	    return ((n % x) + x) % x;
+	}
+
 	var indexOf;
 
 	if (Array.prototype.indexOf) {
@@ -40406,10 +40244,13 @@
 	    };
 	}
 
-	var indexOf$1 = indexOf;
-
 	function daysInMonth(year, month) {
-	    return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+	    if (isNaN(year) || isNaN(month)) {
+	        return NaN;
+	    }
+	    var modMonth = mod(month, 12);
+	    year += (month - modMonth) / 12;
+	    return modMonth === 1 ? (isLeapYear(year) ? 29 : 28) : (31 - modMonth % 7 % 2);
 	}
 
 	// FORMATTING
@@ -40498,26 +40339,26 @@
 
 	    if (strict) {
 	        if (format === 'MMM') {
-	            ii = indexOf$1.call(this._shortMonthsParse, llc);
+	            ii = indexOf.call(this._shortMonthsParse, llc);
 	            return ii !== -1 ? ii : null;
 	        } else {
-	            ii = indexOf$1.call(this._longMonthsParse, llc);
+	            ii = indexOf.call(this._longMonthsParse, llc);
 	            return ii !== -1 ? ii : null;
 	        }
 	    } else {
 	        if (format === 'MMM') {
-	            ii = indexOf$1.call(this._shortMonthsParse, llc);
+	            ii = indexOf.call(this._shortMonthsParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._longMonthsParse, llc);
+	            ii = indexOf.call(this._longMonthsParse, llc);
 	            return ii !== -1 ? ii : null;
 	        } else {
-	            ii = indexOf$1.call(this._longMonthsParse, llc);
+	            ii = indexOf.call(this._longMonthsParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._shortMonthsParse, llc);
+	            ii = indexOf.call(this._shortMonthsParse, llc);
 	            return ii !== -1 ? ii : null;
 	        }
 	    }
@@ -40674,72 +40515,6 @@
 	    this._monthsShortRegex = this._monthsRegex;
 	    this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
 	    this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
-	}
-
-	// FORMATTING
-
-	addFormatToken('Y', 0, 0, function () {
-	    var y = this.year();
-	    return y <= 9999 ? '' + y : '+' + y;
-	});
-
-	addFormatToken(0, ['YY', 2], 0, function () {
-	    return this.year() % 100;
-	});
-
-	addFormatToken(0, ['YYYY',   4],       0, 'year');
-	addFormatToken(0, ['YYYYY',  5],       0, 'year');
-	addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
-
-	// ALIASES
-
-	addUnitAlias('year', 'y');
-
-	// PRIORITIES
-
-	addUnitPriority('year', 1);
-
-	// PARSING
-
-	addRegexToken('Y',      matchSigned);
-	addRegexToken('YY',     match1to2, match2);
-	addRegexToken('YYYY',   match1to4, match4);
-	addRegexToken('YYYYY',  match1to6, match6);
-	addRegexToken('YYYYYY', match1to6, match6);
-
-	addParseToken(['YYYYY', 'YYYYYY'], YEAR);
-	addParseToken('YYYY', function (input, array) {
-	    array[YEAR] = input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
-	});
-	addParseToken('YY', function (input, array) {
-	    array[YEAR] = hooks.parseTwoDigitYear(input);
-	});
-	addParseToken('Y', function (input, array) {
-	    array[YEAR] = parseInt(input, 10);
-	});
-
-	// HELPERS
-
-	function daysInYear(year) {
-	    return isLeapYear(year) ? 366 : 365;
-	}
-
-	function isLeapYear(year) {
-	    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-	}
-
-	// HOOKS
-
-	hooks.parseTwoDigitYear = function (input) {
-	    return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
-	};
-
-	// MOMENTS
-
-	var getSetYear = makeGetSet('FullYear', true);
-
-	function getIsLeapYear () {
-	    return isLeapYear(this.year());
 	}
 
 	function createDate (y, m, d, h, M, s, ms) {
@@ -41009,48 +40784,48 @@
 
 	    if (strict) {
 	        if (format === 'dddd') {
-	            ii = indexOf$1.call(this._weekdaysParse, llc);
+	            ii = indexOf.call(this._weekdaysParse, llc);
 	            return ii !== -1 ? ii : null;
 	        } else if (format === 'ddd') {
-	            ii = indexOf$1.call(this._shortWeekdaysParse, llc);
+	            ii = indexOf.call(this._shortWeekdaysParse, llc);
 	            return ii !== -1 ? ii : null;
 	        } else {
-	            ii = indexOf$1.call(this._minWeekdaysParse, llc);
+	            ii = indexOf.call(this._minWeekdaysParse, llc);
 	            return ii !== -1 ? ii : null;
 	        }
 	    } else {
 	        if (format === 'dddd') {
-	            ii = indexOf$1.call(this._weekdaysParse, llc);
+	            ii = indexOf.call(this._weekdaysParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._shortWeekdaysParse, llc);
+	            ii = indexOf.call(this._shortWeekdaysParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._minWeekdaysParse, llc);
+	            ii = indexOf.call(this._minWeekdaysParse, llc);
 	            return ii !== -1 ? ii : null;
 	        } else if (format === 'ddd') {
-	            ii = indexOf$1.call(this._shortWeekdaysParse, llc);
+	            ii = indexOf.call(this._shortWeekdaysParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._weekdaysParse, llc);
+	            ii = indexOf.call(this._weekdaysParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._minWeekdaysParse, llc);
+	            ii = indexOf.call(this._minWeekdaysParse, llc);
 	            return ii !== -1 ? ii : null;
 	        } else {
-	            ii = indexOf$1.call(this._minWeekdaysParse, llc);
+	            ii = indexOf.call(this._minWeekdaysParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._weekdaysParse, llc);
+	            ii = indexOf.call(this._weekdaysParse, llc);
 	            if (ii !== -1) {
 	                return ii;
 	            }
-	            ii = indexOf$1.call(this._shortWeekdaysParse, llc);
+	            ii = indexOf.call(this._shortWeekdaysParse, llc);
 	            return ii !== -1 ? ii : null;
 	        }
 	    }
@@ -41439,11 +41214,10 @@
 	            module && module.exports) {
 	        try {
 	            oldLocale = globalLocale._abbr;
+	            var aliasedRequire = require;
 	            __webpack_require__(356)("./" + name);
-	            // because defineLocale currently also sets the global locale, we
-	            // want to undo that for lazy loaded locales
 	            getSetGlobalLocale(oldLocale);
-	        } catch (e) { }
+	        } catch (e) {}
 	    }
 	    return locales[name];
 	}
@@ -41569,7 +41343,7 @@
 	}
 
 	function listLocales() {
-	    return keys$1(locales);
+	    return keys(locales);
 	}
 
 	function checkOverflow (m) {
@@ -41600,6 +41374,154 @@
 	    }
 
 	    return m;
+	}
+
+	// Pick the first defined of two or three arguments.
+	function defaults(a, b, c) {
+	    if (a != null) {
+	        return a;
+	    }
+	    if (b != null) {
+	        return b;
+	    }
+	    return c;
+	}
+
+	function currentDateArray(config) {
+	    // hooks is actually the exported moment object
+	    var nowValue = new Date(hooks.now());
+	    if (config._useUTC) {
+	        return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate()];
+	    }
+	    return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
+	}
+
+	// convert an array to a date.
+	// the array should mirror the parameters below
+	// note: all values past the year are optional and will default to the lowest possible value.
+	// [year, month, day , hour, minute, second, millisecond]
+	function configFromArray (config) {
+	    var i, date, input = [], currentDate, yearToUse;
+
+	    if (config._d) {
+	        return;
+	    }
+
+	    currentDate = currentDateArray(config);
+
+	    //compute day of the year from weeks and weekdays
+	    if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
+	        dayOfYearFromWeekInfo(config);
+	    }
+
+	    //if the day of the year is set, figure out what it is
+	    if (config._dayOfYear != null) {
+	        yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
+
+	        if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
+	            getParsingFlags(config)._overflowDayOfYear = true;
+	        }
+
+	        date = createUTCDate(yearToUse, 0, config._dayOfYear);
+	        config._a[MONTH] = date.getUTCMonth();
+	        config._a[DATE] = date.getUTCDate();
+	    }
+
+	    // Default to current date.
+	    // * if no year, month, day of month are given, default to today
+	    // * if day of month is given, default month and year
+	    // * if month is given, default only year
+	    // * if year is given, don't default anything
+	    for (i = 0; i < 3 && config._a[i] == null; ++i) {
+	        config._a[i] = input[i] = currentDate[i];
+	    }
+
+	    // Zero out whatever was not defaulted, including time
+	    for (; i < 7; i++) {
+	        config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
+	    }
+
+	    // Check for 24:00:00.000
+	    if (config._a[HOUR] === 24 &&
+	            config._a[MINUTE] === 0 &&
+	            config._a[SECOND] === 0 &&
+	            config._a[MILLISECOND] === 0) {
+	        config._nextDay = true;
+	        config._a[HOUR] = 0;
+	    }
+
+	    config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
+	    // Apply timezone offset from input. The actual utcOffset can be changed
+	    // with parseZone.
+	    if (config._tzm != null) {
+	        config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
+	    }
+
+	    if (config._nextDay) {
+	        config._a[HOUR] = 24;
+	    }
+
+	    // check for mismatching day of week
+	    if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== config._d.getDay()) {
+	        getParsingFlags(config).weekdayMismatch = true;
+	    }
+	}
+
+	function dayOfYearFromWeekInfo(config) {
+	    var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+
+	    w = config._w;
+	    if (w.GG != null || w.W != null || w.E != null) {
+	        dow = 1;
+	        doy = 4;
+
+	        // TODO: We need to take the current isoWeekYear, but that depends on
+	        // how we interpret now (local, utc, fixed offset). So create
+	        // a now version of current config (take local/utc/offset flags, and
+	        // create now).
+	        weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(createLocal(), 1, 4).year);
+	        week = defaults(w.W, 1);
+	        weekday = defaults(w.E, 1);
+	        if (weekday < 1 || weekday > 7) {
+	            weekdayOverflow = true;
+	        }
+	    } else {
+	        dow = config._locale._week.dow;
+	        doy = config._locale._week.doy;
+
+	        var curWeek = weekOfYear(createLocal(), dow, doy);
+
+	        weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
+
+	        // Default to current week.
+	        week = defaults(w.w, curWeek.week);
+
+	        if (w.d != null) {
+	            // weekday -- low day numbers are considered next week
+	            weekday = w.d;
+	            if (weekday < 0 || weekday > 6) {
+	                weekdayOverflow = true;
+	            }
+	        } else if (w.e != null) {
+	            // local weekday -- counting starts from begining of week
+	            weekday = w.e + dow;
+	            if (w.e < 0 || w.e > 6) {
+	                weekdayOverflow = true;
+	            }
+	        } else {
+	            // default to begining of week
+	            weekday = dow;
+	        }
+	    }
+	    if (week < 1 || week > weeksInYear(weekYear, dow, doy)) {
+	        getParsingFlags(config)._overflowWeeks = true;
+	    } else if (weekdayOverflow != null) {
+	        getParsingFlags(config)._overflowWeekday = true;
+	    } else {
+	        temp = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy);
+	        config._a[YEAR] = temp.year;
+	        config._dayOfYear = temp.dayOfYear;
+	    }
 	}
 
 	// iso 8601 regex
@@ -41693,70 +41615,94 @@
 	}
 
 	// RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
-	var basicRfcRegex = /^((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d?\d\s(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(?:\d\d)?\d\d\s)(\d\d:\d\d)(\:\d\d)?(\s(?:UT|GMT|[ECMP][SD]T|[A-IK-Za-ik-z]|[+-]\d{4}))$/;
+	var rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;
+
+	function extractFromRFC2822Strings(yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr) {
+	    var result = [
+	        untruncateYear(yearStr),
+	        defaultLocaleMonthsShort.indexOf(monthStr),
+	        parseInt(dayStr, 10),
+	        parseInt(hourStr, 10),
+	        parseInt(minuteStr, 10)
+	    ];
+
+	    if (secondStr) {
+	        result.push(parseInt(secondStr, 10));
+	    }
+
+	    return result;
+	}
+
+	function untruncateYear(yearStr) {
+	    var year = parseInt(yearStr, 10);
+	    if (year <= 49) {
+	        return 2000 + year;
+	    } else if (year <= 999) {
+	        return 1900 + year;
+	    }
+	    return year;
+	}
+
+	function preprocessRFC2822(s) {
+	    // Remove comments and folding whitespace and replace multiple-spaces with a single space
+	    return s.replace(/\([^)]*\)|[\n\t]/g, ' ').replace(/(\s\s+)/g, ' ').trim();
+	}
+
+	function checkWeekday(weekdayStr, parsedInput, config) {
+	    if (weekdayStr) {
+	        // TODO: Replace the vanilla JS Date object with an indepentent day-of-week check.
+	        var weekdayProvided = defaultLocaleWeekdaysShort.indexOf(weekdayStr),
+	            weekdayActual = new Date(parsedInput[0], parsedInput[1], parsedInput[2]).getDay();
+	        if (weekdayProvided !== weekdayActual) {
+	            getParsingFlags(config).weekdayMismatch = true;
+	            config._isValid = false;
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
+	var obsOffsets = {
+	    UT: 0,
+	    GMT: 0,
+	    EDT: -4 * 60,
+	    EST: -5 * 60,
+	    CDT: -5 * 60,
+	    CST: -6 * 60,
+	    MDT: -6 * 60,
+	    MST: -7 * 60,
+	    PDT: -7 * 60,
+	    PST: -8 * 60
+	};
+
+	function calculateOffset(obsOffset, militaryOffset, numOffset) {
+	    if (obsOffset) {
+	        return obsOffsets[obsOffset];
+	    } else if (militaryOffset) {
+	        // the only allowed military tz is Z
+	        return 0;
+	    } else {
+	        var hm = parseInt(numOffset, 10);
+	        var m = hm % 100, h = (hm - m) / 100;
+	        return h * 60 + m;
+	    }
+	}
 
 	// date and time from ref 2822 format
 	function configFromRFC2822(config) {
-	    var string, match, dayFormat,
-	        dateFormat, timeFormat, tzFormat;
-	    var timezones = {
-	        ' GMT': ' +0000',
-	        ' EDT': ' -0400',
-	        ' EST': ' -0500',
-	        ' CDT': ' -0500',
-	        ' CST': ' -0600',
-	        ' MDT': ' -0600',
-	        ' MST': ' -0700',
-	        ' PDT': ' -0700',
-	        ' PST': ' -0800'
-	    };
-	    var military = 'YXWVUTSRQPONZABCDEFGHIKLM';
-	    var timezone, timezoneIndex;
-
-	    string = config._i
-	        .replace(/\([^\)]*\)|[\n\t]/g, ' ') // Remove comments and folding whitespace
-	        .replace(/(\s\s+)/g, ' ') // Replace multiple-spaces with a single space
-	        .replace(/^\s|\s$/g, ''); // Remove leading and trailing spaces
-	    match = basicRfcRegex.exec(string);
-
+	    var match = rfc2822.exec(preprocessRFC2822(config._i));
 	    if (match) {
-	        dayFormat = match[1] ? 'ddd' + ((match[1].length === 5) ? ', ' : ' ') : '';
-	        dateFormat = 'D MMM ' + ((match[2].length > 10) ? 'YYYY ' : 'YY ');
-	        timeFormat = 'HH:mm' + (match[4] ? ':ss' : '');
-
-	        // TODO: Replace the vanilla JS Date object with an indepentent day-of-week check.
-	        if (match[1]) { // day of week given
-	            var momentDate = new Date(match[2]);
-	            var momentDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][momentDate.getDay()];
-
-	            if (match[1].substr(0,3) !== momentDay) {
-	                getParsingFlags(config).weekdayMismatch = true;
-	                config._isValid = false;
-	                return;
-	            }
+	        var parsedArray = extractFromRFC2822Strings(match[4], match[3], match[2], match[5], match[6], match[7]);
+	        if (!checkWeekday(match[1], parsedArray, config)) {
+	            return;
 	        }
 
-	        switch (match[5].length) {
-	            case 2: // military
-	                if (timezoneIndex === 0) {
-	                    timezone = ' +0000';
-	                } else {
-	                    timezoneIndex = military.indexOf(match[5][1].toUpperCase()) - 12;
-	                    timezone = ((timezoneIndex < 0) ? ' -' : ' +') +
-	                        (('' + timezoneIndex).replace(/^-?/, '0')).match(/..$/)[0] + '00';
-	                }
-	                break;
-	            case 4: // Zone
-	                timezone = timezones[match[5]];
-	                break;
-	            default: // UT or +/-9999
-	                timezone = timezones[' GMT'];
-	        }
-	        match[5] = timezone;
-	        config._i = match.splice(1).join('');
-	        tzFormat = ' ZZ';
-	        config._f = dayFormat + dateFormat + timeFormat + tzFormat;
-	        configFromStringAndFormat(config);
+	        config._a = parsedArray;
+	        config._tzm = calculateOffset(match[8], match[9], match[10]);
+
+	        config._d = createUTCDate.apply(null, config._a);
+	        config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
+
 	        getParsingFlags(config).rfc2822 = true;
 	    } else {
 	        config._isValid = false;
@@ -41799,149 +41745,6 @@
 	        config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
 	    }
 	);
-
-	// Pick the first defined of two or three arguments.
-	function defaults(a, b, c) {
-	    if (a != null) {
-	        return a;
-	    }
-	    if (b != null) {
-	        return b;
-	    }
-	    return c;
-	}
-
-	function currentDateArray(config) {
-	    // hooks is actually the exported moment object
-	    var nowValue = new Date(hooks.now());
-	    if (config._useUTC) {
-	        return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate()];
-	    }
-	    return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
-	}
-
-	// convert an array to a date.
-	// the array should mirror the parameters below
-	// note: all values past the year are optional and will default to the lowest possible value.
-	// [year, month, day , hour, minute, second, millisecond]
-	function configFromArray (config) {
-	    var i, date, input = [], currentDate, yearToUse;
-
-	    if (config._d) {
-	        return;
-	    }
-
-	    currentDate = currentDateArray(config);
-
-	    //compute day of the year from weeks and weekdays
-	    if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
-	        dayOfYearFromWeekInfo(config);
-	    }
-
-	    //if the day of the year is set, figure out what it is
-	    if (config._dayOfYear != null) {
-	        yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
-
-	        if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
-	            getParsingFlags(config)._overflowDayOfYear = true;
-	        }
-
-	        date = createUTCDate(yearToUse, 0, config._dayOfYear);
-	        config._a[MONTH] = date.getUTCMonth();
-	        config._a[DATE] = date.getUTCDate();
-	    }
-
-	    // Default to current date.
-	    // * if no year, month, day of month are given, default to today
-	    // * if day of month is given, default month and year
-	    // * if month is given, default only year
-	    // * if year is given, don't default anything
-	    for (i = 0; i < 3 && config._a[i] == null; ++i) {
-	        config._a[i] = input[i] = currentDate[i];
-	    }
-
-	    // Zero out whatever was not defaulted, including time
-	    for (; i < 7; i++) {
-	        config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
-	    }
-
-	    // Check for 24:00:00.000
-	    if (config._a[HOUR] === 24 &&
-	            config._a[MINUTE] === 0 &&
-	            config._a[SECOND] === 0 &&
-	            config._a[MILLISECOND] === 0) {
-	        config._nextDay = true;
-	        config._a[HOUR] = 0;
-	    }
-
-	    config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
-	    // Apply timezone offset from input. The actual utcOffset can be changed
-	    // with parseZone.
-	    if (config._tzm != null) {
-	        config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
-	    }
-
-	    if (config._nextDay) {
-	        config._a[HOUR] = 24;
-	    }
-	}
-
-	function dayOfYearFromWeekInfo(config) {
-	    var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
-
-	    w = config._w;
-	    if (w.GG != null || w.W != null || w.E != null) {
-	        dow = 1;
-	        doy = 4;
-
-	        // TODO: We need to take the current isoWeekYear, but that depends on
-	        // how we interpret now (local, utc, fixed offset). So create
-	        // a now version of current config (take local/utc/offset flags, and
-	        // create now).
-	        weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(createLocal(), 1, 4).year);
-	        week = defaults(w.W, 1);
-	        weekday = defaults(w.E, 1);
-	        if (weekday < 1 || weekday > 7) {
-	            weekdayOverflow = true;
-	        }
-	    } else {
-	        dow = config._locale._week.dow;
-	        doy = config._locale._week.doy;
-
-	        var curWeek = weekOfYear(createLocal(), dow, doy);
-
-	        weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
-
-	        // Default to current week.
-	        week = defaults(w.w, curWeek.week);
-
-	        if (w.d != null) {
-	            // weekday -- low day numbers are considered next week
-	            weekday = w.d;
-	            if (weekday < 0 || weekday > 6) {
-	                weekdayOverflow = true;
-	            }
-	        } else if (w.e != null) {
-	            // local weekday -- counting starts from begining of week
-	            weekday = w.e + dow;
-	            if (w.e < 0 || w.e > 6) {
-	                weekdayOverflow = true;
-	            }
-	        } else {
-	            // default to begining of week
-	            weekday = dow;
-	        }
-	    }
-	    if (week < 1 || week > weeksInYear(weekYear, dow, doy)) {
-	        getParsingFlags(config)._overflowWeeks = true;
-	    } else if (weekdayOverflow != null) {
-	        getParsingFlags(config)._overflowWeekday = true;
-	    } else {
-	        temp = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy);
-	        config._a[YEAR] = temp.year;
-	        config._dayOfYear = temp.dayOfYear;
-	    }
-	}
 
 	// constant that refers to the ISO standard
 	hooks.ISO_8601 = function () {};
@@ -42267,7 +42070,7 @@
 
 	function isDurationValid(m) {
 	    for (var key in m) {
-	        if (!(ordering.indexOf(key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
+	        if (!(indexOf.call(ordering, key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
 	            return false;
 	        }
 	    }
@@ -42318,7 +42121,7 @@
 	    // day when working around DST, we need to store them separately
 	    this._days = +days +
 	        weeks * 7;
-	    // It is impossible translate months into days without knowing
+	    // It is impossible to translate months into days without knowing
 	    // which months you are are talking about, so we have to store
 	    // it separately.
 	    this._months = +months +
@@ -42565,12 +42368,12 @@
 	}
 
 	// ASP.NET json date format regex
-	var aspNetRegex = /^(\-)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
+	var aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
 	// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
 	// somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
 	// and further modified to allow for strings containing both week and day
-	var isoRegex = /^(-)?P(?:(-?[0-9,.]*)Y)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)W)?(?:(-?[0-9,.]*)D)?(?:T(?:(-?[0-9,.]*)H)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)S)?)?$/;
+	var isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
 
 	function createDuration (input, key) {
 	    var duration = input,
@@ -42604,7 +42407,7 @@
 	            ms : toInt(absRound(match[MILLISECOND] * 1000)) * sign // the millisecond decimal point is included in the match
 	        };
 	    } else if (!!(match = isoRegex.exec(input))) {
-	        sign = (match[1] === '-') ? -1 : 1;
+	        sign = (match[1] === '-') ? -1 : (match[1] === '+') ? 1 : 1;
 	        duration = {
 	            y : parseIso(match[2], sign),
 	            M : parseIso(match[3], sign),
@@ -42707,14 +42510,14 @@
 
 	    updateOffset = updateOffset == null ? true : updateOffset;
 
-	    if (milliseconds) {
-	        mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
+	    if (months) {
+	        setMonth(mom, get(mom, 'Month') + months * isAdding);
 	    }
 	    if (days) {
 	        set$1(mom, 'Date', get(mom, 'Date') + days * isAdding);
 	    }
-	    if (months) {
-	        setMonth(mom, get(mom, 'Month') + months * isAdding);
+	    if (milliseconds) {
+	        mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
 	    }
 	    if (updateOffset) {
 	        hooks.updateOffset(mom, days || months);
@@ -42824,22 +42627,18 @@
 
 	    units = normalizeUnits(units);
 
-	    if (units === 'year' || units === 'month' || units === 'quarter') {
-	        output = monthDiff(this, that);
-	        if (units === 'quarter') {
-	            output = output / 3;
-	        } else if (units === 'year') {
-	            output = output / 12;
-	        }
-	    } else {
-	        delta = this - that;
-	        output = units === 'second' ? delta / 1e3 : // 1000
-	            units === 'minute' ? delta / 6e4 : // 1000 * 60
-	            units === 'hour' ? delta / 36e5 : // 1000 * 60 * 60
-	            units === 'day' ? (delta - zoneDelta) / 864e5 : // 1000 * 60 * 60 * 24, negate dst
-	            units === 'week' ? (delta - zoneDelta) / 6048e5 : // 1000 * 60 * 60 * 24 * 7, negate dst
-	            delta;
+	    switch (units) {
+	        case 'year': output = monthDiff(this, that) / 12; break;
+	        case 'month': output = monthDiff(this, that); break;
+	        case 'quarter': output = monthDiff(this, that) / 3; break;
+	        case 'second': output = (this - that) / 1e3; break; // 1000
+	        case 'minute': output = (this - that) / 6e4; break; // 1000 * 60
+	        case 'hour': output = (this - that) / 36e5; break; // 1000 * 60 * 60
+	        case 'day': output = (this - that - zoneDelta) / 864e5; break; // 1000 * 60 * 60 * 24, negate dst
+	        case 'week': output = (this - that - zoneDelta) / 6048e5; break; // 1000 * 60 * 60 * 24 * 7, negate dst
+	        default: output = this - that;
 	    }
+
 	    return asFloat ? output : absFloor(output);
 	}
 
@@ -43817,6 +43616,10 @@
 	var asMonths       = makeAs('M');
 	var asYears        = makeAs('y');
 
+	function clone$1 () {
+	    return createDuration(this);
+	}
+
 	function get$2 (units) {
 	    units = normalizeUnits(units);
 	    return this.isValid() ? this[units + 's']() : NaN;
@@ -43926,6 +43729,10 @@
 
 	var abs$1 = Math.abs;
 
+	function sign(x) {
+	    return ((x > 0) - (x < 0)) || +x;
+	}
+
 	function toISOString$1() {
 	    // for ISO strings we do not use the normal bubbling rules:
 	    //  * milliseconds bubble up until they become hours
@@ -43960,7 +43767,7 @@
 	    var D = days;
 	    var h = hours;
 	    var m = minutes;
-	    var s = seconds;
+	    var s = seconds ? seconds.toFixed(3).replace(/\.?0+$/, '') : '';
 	    var total = this.asSeconds();
 
 	    if (!total) {
@@ -43969,15 +43776,19 @@
 	        return 'P0D';
 	    }
 
-	    return (total < 0 ? '-' : '') +
-	        'P' +
-	        (Y ? Y + 'Y' : '') +
-	        (M ? M + 'M' : '') +
-	        (D ? D + 'D' : '') +
+	    var totalSign = total < 0 ? '-' : '';
+	    var ymSign = sign(this._months) !== sign(total) ? '-' : '';
+	    var daysSign = sign(this._days) !== sign(total) ? '-' : '';
+	    var hmsSign = sign(this._milliseconds) !== sign(total) ? '-' : '';
+
+	    return totalSign + 'P' +
+	        (Y ? ymSign + Y + 'Y' : '') +
+	        (M ? ymSign + M + 'M' : '') +
+	        (D ? daysSign + D + 'D' : '') +
 	        ((h || m || s) ? 'T' : '') +
-	        (h ? h + 'H' : '') +
-	        (m ? m + 'M' : '') +
-	        (s ? s + 'S' : '');
+	        (h ? hmsSign + h + 'H' : '') +
+	        (m ? hmsSign + m + 'M' : '') +
+	        (s ? hmsSign + s + 'S' : '');
 	}
 
 	var proto$2 = Duration.prototype;
@@ -43997,6 +43808,7 @@
 	proto$2.asYears        = asYears;
 	proto$2.valueOf        = valueOf$1;
 	proto$2._bubble        = bubble;
+	proto$2.clone          = clone$1;
 	proto$2.get            = get$2;
 	proto$2.milliseconds   = milliseconds;
 	proto$2.seconds        = seconds;
@@ -44038,7 +43850,7 @@
 	// Side effect imports
 
 
-	hooks.version = '2.18.1';
+	hooks.version = '2.19.1';
 
 	setHookCallback(createLocal);
 
@@ -44065,7 +43877,7 @@
 	hooks.locales               = listLocales;
 	hooks.weekdaysShort         = listWeekdaysShort;
 	hooks.normalizeUnits        = normalizeUnits;
-	hooks.relativeTimeRounding = getSetRelativeTimeRounding;
+	hooks.relativeTimeRounding  = getSetRelativeTimeRounding;
 	hooks.relativeTimeThreshold = getSetRelativeTimeThreshold;
 	hooks.calendarFormat        = getCalendarFormat;
 	hooks.prototype             = proto;
@@ -44119,214 +43931,220 @@
 		"./be.js": 366,
 		"./bg": 367,
 		"./bg.js": 367,
-		"./bn": 368,
-		"./bn.js": 368,
-		"./bo": 369,
-		"./bo.js": 369,
-		"./br": 370,
-		"./br.js": 370,
-		"./bs": 371,
-		"./bs.js": 371,
-		"./ca": 372,
-		"./ca.js": 372,
-		"./cs": 373,
-		"./cs.js": 373,
-		"./cv": 374,
-		"./cv.js": 374,
-		"./cy": 375,
-		"./cy.js": 375,
-		"./da": 376,
-		"./da.js": 376,
-		"./de": 377,
-		"./de-at": 378,
-		"./de-at.js": 378,
-		"./de-ch": 379,
-		"./de-ch.js": 379,
-		"./de.js": 377,
-		"./dv": 380,
-		"./dv.js": 380,
-		"./el": 381,
-		"./el.js": 381,
-		"./en-au": 382,
-		"./en-au.js": 382,
-		"./en-ca": 383,
-		"./en-ca.js": 383,
-		"./en-gb": 384,
-		"./en-gb.js": 384,
-		"./en-ie": 385,
-		"./en-ie.js": 385,
-		"./en-nz": 386,
-		"./en-nz.js": 386,
-		"./eo": 387,
-		"./eo.js": 387,
-		"./es": 388,
-		"./es-do": 389,
-		"./es-do.js": 389,
-		"./es.js": 388,
-		"./et": 390,
-		"./et.js": 390,
-		"./eu": 391,
-		"./eu.js": 391,
-		"./fa": 392,
-		"./fa.js": 392,
-		"./fi": 393,
-		"./fi.js": 393,
-		"./fo": 394,
-		"./fo.js": 394,
-		"./fr": 395,
-		"./fr-ca": 396,
-		"./fr-ca.js": 396,
-		"./fr-ch": 397,
-		"./fr-ch.js": 397,
-		"./fr.js": 395,
-		"./fy": 398,
-		"./fy.js": 398,
-		"./gd": 399,
-		"./gd.js": 399,
-		"./gl": 400,
-		"./gl.js": 400,
-		"./gom-latn": 401,
-		"./gom-latn.js": 401,
-		"./he": 402,
-		"./he.js": 402,
-		"./hi": 403,
-		"./hi.js": 403,
-		"./hr": 404,
-		"./hr.js": 404,
-		"./hu": 405,
-		"./hu.js": 405,
-		"./hy-am": 406,
-		"./hy-am.js": 406,
-		"./id": 407,
-		"./id.js": 407,
-		"./is": 408,
-		"./is.js": 408,
-		"./it": 409,
-		"./it.js": 409,
-		"./ja": 410,
-		"./ja.js": 410,
-		"./jv": 411,
-		"./jv.js": 411,
-		"./ka": 412,
-		"./ka.js": 412,
-		"./kk": 413,
-		"./kk.js": 413,
-		"./km": 414,
-		"./km.js": 414,
-		"./kn": 415,
-		"./kn.js": 415,
-		"./ko": 416,
-		"./ko.js": 416,
-		"./ky": 417,
-		"./ky.js": 417,
-		"./lb": 418,
-		"./lb.js": 418,
-		"./lo": 419,
-		"./lo.js": 419,
-		"./lt": 420,
-		"./lt.js": 420,
-		"./lv": 421,
-		"./lv.js": 421,
-		"./me": 422,
-		"./me.js": 422,
-		"./mi": 423,
-		"./mi.js": 423,
-		"./mk": 424,
-		"./mk.js": 424,
-		"./ml": 425,
-		"./ml.js": 425,
-		"./mr": 426,
-		"./mr.js": 426,
-		"./ms": 427,
-		"./ms-my": 428,
-		"./ms-my.js": 428,
-		"./ms.js": 427,
-		"./my": 429,
-		"./my.js": 429,
-		"./nb": 430,
-		"./nb.js": 430,
-		"./ne": 431,
-		"./ne.js": 431,
-		"./nl": 432,
-		"./nl-be": 433,
-		"./nl-be.js": 433,
-		"./nl.js": 432,
-		"./nn": 434,
-		"./nn.js": 434,
-		"./pa-in": 435,
-		"./pa-in.js": 435,
-		"./pl": 436,
-		"./pl.js": 436,
-		"./pt": 437,
-		"./pt-br": 438,
-		"./pt-br.js": 438,
-		"./pt.js": 437,
-		"./ro": 439,
-		"./ro.js": 439,
-		"./ru": 440,
-		"./ru.js": 440,
-		"./sd": 441,
-		"./sd.js": 441,
-		"./se": 442,
-		"./se.js": 442,
-		"./si": 443,
-		"./si.js": 443,
-		"./sk": 444,
-		"./sk.js": 444,
-		"./sl": 445,
-		"./sl.js": 445,
-		"./sq": 446,
-		"./sq.js": 446,
-		"./sr": 447,
-		"./sr-cyrl": 448,
-		"./sr-cyrl.js": 448,
-		"./sr.js": 447,
-		"./ss": 449,
-		"./ss.js": 449,
-		"./sv": 450,
-		"./sv.js": 450,
-		"./sw": 451,
-		"./sw.js": 451,
-		"./ta": 452,
-		"./ta.js": 452,
-		"./te": 453,
-		"./te.js": 453,
-		"./tet": 454,
-		"./tet.js": 454,
-		"./th": 455,
-		"./th.js": 455,
-		"./tl-ph": 456,
-		"./tl-ph.js": 456,
-		"./tlh": 457,
-		"./tlh.js": 457,
-		"./tr": 458,
-		"./tr.js": 458,
-		"./tzl": 459,
-		"./tzl.js": 459,
-		"./tzm": 460,
-		"./tzm-latn": 461,
-		"./tzm-latn.js": 461,
-		"./tzm.js": 460,
-		"./uk": 462,
-		"./uk.js": 462,
-		"./ur": 463,
-		"./ur.js": 463,
-		"./uz": 464,
-		"./uz-latn": 465,
-		"./uz-latn.js": 465,
-		"./uz.js": 464,
-		"./vi": 466,
-		"./vi.js": 466,
-		"./x-pseudo": 467,
-		"./x-pseudo.js": 467,
-		"./yo": 468,
-		"./yo.js": 468,
-		"./zh-cn": 469,
-		"./zh-cn.js": 469,
-		"./zh-hk": 470,
-		"./zh-hk.js": 470,
-		"./zh-tw": 471,
-		"./zh-tw.js": 471
+		"./bm": 368,
+		"./bm.js": 368,
+		"./bn": 369,
+		"./bn.js": 369,
+		"./bo": 370,
+		"./bo.js": 370,
+		"./br": 371,
+		"./br.js": 371,
+		"./bs": 372,
+		"./bs.js": 372,
+		"./ca": 373,
+		"./ca.js": 373,
+		"./cs": 374,
+		"./cs.js": 374,
+		"./cv": 375,
+		"./cv.js": 375,
+		"./cy": 376,
+		"./cy.js": 376,
+		"./da": 377,
+		"./da.js": 377,
+		"./de": 378,
+		"./de-at": 379,
+		"./de-at.js": 379,
+		"./de-ch": 380,
+		"./de-ch.js": 380,
+		"./de.js": 378,
+		"./dv": 381,
+		"./dv.js": 381,
+		"./el": 382,
+		"./el.js": 382,
+		"./en-au": 383,
+		"./en-au.js": 383,
+		"./en-ca": 384,
+		"./en-ca.js": 384,
+		"./en-gb": 385,
+		"./en-gb.js": 385,
+		"./en-ie": 386,
+		"./en-ie.js": 386,
+		"./en-nz": 387,
+		"./en-nz.js": 387,
+		"./eo": 388,
+		"./eo.js": 388,
+		"./es": 389,
+		"./es-do": 390,
+		"./es-do.js": 390,
+		"./es-us": 391,
+		"./es-us.js": 391,
+		"./es.js": 389,
+		"./et": 392,
+		"./et.js": 392,
+		"./eu": 393,
+		"./eu.js": 393,
+		"./fa": 394,
+		"./fa.js": 394,
+		"./fi": 395,
+		"./fi.js": 395,
+		"./fo": 396,
+		"./fo.js": 396,
+		"./fr": 397,
+		"./fr-ca": 398,
+		"./fr-ca.js": 398,
+		"./fr-ch": 399,
+		"./fr-ch.js": 399,
+		"./fr.js": 397,
+		"./fy": 400,
+		"./fy.js": 400,
+		"./gd": 401,
+		"./gd.js": 401,
+		"./gl": 402,
+		"./gl.js": 402,
+		"./gom-latn": 403,
+		"./gom-latn.js": 403,
+		"./gu": 404,
+		"./gu.js": 404,
+		"./he": 405,
+		"./he.js": 405,
+		"./hi": 406,
+		"./hi.js": 406,
+		"./hr": 407,
+		"./hr.js": 407,
+		"./hu": 408,
+		"./hu.js": 408,
+		"./hy-am": 409,
+		"./hy-am.js": 409,
+		"./id": 410,
+		"./id.js": 410,
+		"./is": 411,
+		"./is.js": 411,
+		"./it": 412,
+		"./it.js": 412,
+		"./ja": 413,
+		"./ja.js": 413,
+		"./jv": 414,
+		"./jv.js": 414,
+		"./ka": 415,
+		"./ka.js": 415,
+		"./kk": 416,
+		"./kk.js": 416,
+		"./km": 417,
+		"./km.js": 417,
+		"./kn": 418,
+		"./kn.js": 418,
+		"./ko": 419,
+		"./ko.js": 419,
+		"./ky": 420,
+		"./ky.js": 420,
+		"./lb": 421,
+		"./lb.js": 421,
+		"./lo": 422,
+		"./lo.js": 422,
+		"./lt": 423,
+		"./lt.js": 423,
+		"./lv": 424,
+		"./lv.js": 424,
+		"./me": 425,
+		"./me.js": 425,
+		"./mi": 426,
+		"./mi.js": 426,
+		"./mk": 427,
+		"./mk.js": 427,
+		"./ml": 428,
+		"./ml.js": 428,
+		"./mr": 429,
+		"./mr.js": 429,
+		"./ms": 430,
+		"./ms-my": 431,
+		"./ms-my.js": 431,
+		"./ms.js": 430,
+		"./my": 432,
+		"./my.js": 432,
+		"./nb": 433,
+		"./nb.js": 433,
+		"./ne": 434,
+		"./ne.js": 434,
+		"./nl": 435,
+		"./nl-be": 436,
+		"./nl-be.js": 436,
+		"./nl.js": 435,
+		"./nn": 437,
+		"./nn.js": 437,
+		"./pa-in": 438,
+		"./pa-in.js": 438,
+		"./pl": 439,
+		"./pl.js": 439,
+		"./pt": 440,
+		"./pt-br": 441,
+		"./pt-br.js": 441,
+		"./pt.js": 440,
+		"./ro": 442,
+		"./ro.js": 442,
+		"./ru": 443,
+		"./ru.js": 443,
+		"./sd": 444,
+		"./sd.js": 444,
+		"./se": 445,
+		"./se.js": 445,
+		"./si": 446,
+		"./si.js": 446,
+		"./sk": 447,
+		"./sk.js": 447,
+		"./sl": 448,
+		"./sl.js": 448,
+		"./sq": 449,
+		"./sq.js": 449,
+		"./sr": 450,
+		"./sr-cyrl": 451,
+		"./sr-cyrl.js": 451,
+		"./sr.js": 450,
+		"./ss": 452,
+		"./ss.js": 452,
+		"./sv": 453,
+		"./sv.js": 453,
+		"./sw": 454,
+		"./sw.js": 454,
+		"./ta": 455,
+		"./ta.js": 455,
+		"./te": 456,
+		"./te.js": 456,
+		"./tet": 457,
+		"./tet.js": 457,
+		"./th": 458,
+		"./th.js": 458,
+		"./tl-ph": 459,
+		"./tl-ph.js": 459,
+		"./tlh": 460,
+		"./tlh.js": 460,
+		"./tr": 461,
+		"./tr.js": 461,
+		"./tzl": 462,
+		"./tzl.js": 462,
+		"./tzm": 463,
+		"./tzm-latn": 464,
+		"./tzm-latn.js": 464,
+		"./tzm.js": 463,
+		"./uk": 465,
+		"./uk.js": 465,
+		"./ur": 466,
+		"./ur.js": 466,
+		"./uz": 467,
+		"./uz-latn": 468,
+		"./uz-latn.js": 468,
+		"./uz.js": 467,
+		"./vi": 469,
+		"./vi.js": 469,
+		"./x-pseudo": 470,
+		"./x-pseudo.js": 470,
+		"./yo": 471,
+		"./yo.js": 471,
+		"./zh-cn": 472,
+		"./zh-cn.js": 472,
+		"./zh-hk": 473,
+		"./zh-hk.js": 473,
+		"./zh-tw": 474,
+		"./zh-tw.js": 474
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -44547,7 +44365,7 @@
 	        yy : pluralize('y')
 	    },
 	    preparse: function (string) {
-	        return string.replace(/\u200f/g, '').replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
+	        return string.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
 	            return numberMap[match];
 	        }).replace(/،/g, ',');
 	    },
@@ -44808,7 +44626,7 @@
 	        yy : pluralize('y')
 	    },
 	    preparse: function (string) {
-	        return string.replace(/\u200f/g, '').replace(/،/g, ',');
+	        return string.replace(/،/g, ',');
 	    },
 	    postformat: function (string) {
 	        return string.replace(/\d/g, function (match) {
@@ -45414,6 +45232,70 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
+	//! locale : Bambara [bm]
+	//! author : Estelle Comment : https://github.com/estellecomment
+
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(354)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+
+	// Language contact person : Abdoufata Kane : https://github.com/abdoufata
+
+	var bm = moment.defineLocale('bm', {
+	    months : 'Zanwuyekalo_Fewuruyekalo_Marisikalo_Awirilikalo_Mɛkalo_Zuwɛnkalo_Zuluyekalo_Utikalo_Sɛtanburukalo_ɔkutɔburukalo_Nowanburukalo_Desanburukalo'.split('_'),
+	    monthsShort : 'Zan_Few_Mar_Awi_Mɛ_Zuw_Zul_Uti_Sɛt_ɔku_Now_Des'.split('_'),
+	    weekdays : 'Kari_Ntɛnɛn_Tarata_Araba_Alamisa_Juma_Sibiri'.split('_'),
+	    weekdaysShort : 'Kar_Ntɛ_Tar_Ara_Ala_Jum_Sib'.split('_'),
+	    weekdaysMin : 'Ka_Nt_Ta_Ar_Al_Ju_Si'.split('_'),
+	    longDateFormat : {
+	        LT : 'HH:mm',
+	        LTS : 'HH:mm:ss',
+	        L : 'DD/MM/YYYY',
+	        LL : 'MMMM [tile] D [san] YYYY',
+	        LLL : 'MMMM [tile] D [san] YYYY [lɛrɛ] HH:mm',
+	        LLLL : 'dddd MMMM [tile] D [san] YYYY [lɛrɛ] HH:mm'
+	    },
+	    calendar : {
+	        sameDay : '[Bi lɛrɛ] LT',
+	        nextDay : '[Sini lɛrɛ] LT',
+	        nextWeek : 'dddd [don lɛrɛ] LT',
+	        lastDay : '[Kunu lɛrɛ] LT',
+	        lastWeek : 'dddd [tɛmɛnen lɛrɛ] LT',
+	        sameElse : 'L'
+	    },
+	    relativeTime : {
+	        future : '%s kɔnɔ',
+	        past : 'a bɛ %s bɔ',
+	        s : 'sanga dama dama',
+	        m : 'miniti kelen',
+	        mm : 'miniti %d',
+	        h : 'lɛrɛ kelen',
+	        hh : 'lɛrɛ %d',
+	        d : 'tile kelen',
+	        dd : 'tile %d',
+	        M : 'kalo kelen',
+	        MM : 'kalo %d',
+	        y : 'san kelen',
+	        yy : 'san %d'
+	    },
+	    week : {
+	        dow : 1, // Monday is the first day of the week.
+	        doy : 4  // The week that contains Jan 4th is the first week of the year.
+	    }
+	});
+
+	return bm;
+
+	})));
+
+
+/***/ }),
+/* 369 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
 	//! locale : Bengali [bn]
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
@@ -45534,7 +45416,7 @@
 
 
 /***/ }),
-/* 369 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45658,7 +45540,7 @@
 
 
 /***/ }),
-/* 370 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45771,7 +45653,7 @@
 
 
 /***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45919,7 +45801,7 @@
 
 
 /***/ }),
-/* 372 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45943,17 +45825,17 @@
 	    monthsParseExact : true,
 	    weekdays : 'diumenge_dilluns_dimarts_dimecres_dijous_divendres_dissabte'.split('_'),
 	    weekdaysShort : 'dg._dl._dt._dc._dj._dv._ds.'.split('_'),
-	    weekdaysMin : 'Dg_Dl_Dt_Dc_Dj_Dv_Ds'.split('_'),
+	    weekdaysMin : 'dg_dl_dt_dc_dj_dv_ds'.split('_'),
 	    weekdaysParseExact : true,
 	    longDateFormat : {
 	        LT : 'H:mm',
 	        LTS : 'H:mm:ss',
 	        L : 'DD/MM/YYYY',
-	        LL : '[el] D MMMM [de] YYYY',
+	        LL : 'D MMMM [de] YYYY',
 	        ll : 'D MMM YYYY',
-	        LLL : '[el] D MMMM [de] YYYY [a les] H:mm',
+	        LLL : 'D MMMM [de] YYYY [a les] H:mm',
 	        lll : 'D MMM YYYY, H:mm',
-	        LLLL : '[el] dddd D MMMM [de] YYYY [a les] H:mm',
+	        LLLL : 'dddd D MMMM [de] YYYY [a les] H:mm',
 	        llll : 'ddd D MMM YYYY, H:mm'
 	    },
 	    calendar : {
@@ -46012,7 +45894,7 @@
 
 
 /***/ }),
-/* 373 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46189,7 +46071,7 @@
 
 
 /***/ }),
-/* 374 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46257,7 +46139,7 @@
 
 
 /***/ }),
-/* 375 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46343,7 +46225,7 @@
 
 
 /***/ }),
-/* 376 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46366,7 +46248,7 @@
 	    longDateFormat : {
 	        LT : 'HH:mm',
 	        LTS : 'HH:mm:ss',
-	        L : 'DD/MM/YYYY',
+	        L : 'DD.MM.YYYY',
 	        LL : 'D. MMMM YYYY',
 	        LLL : 'D. MMMM YYYY HH:mm',
 	        LLLL : 'dddd [d.] D. MMMM YYYY [kl.] HH:mm'
@@ -46408,7 +46290,7 @@
 
 
 /***/ }),
-/* 377 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46440,7 +46322,7 @@
 
 	var de = moment.defineLocale('de', {
 	    months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-	    monthsShort : 'Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
+	    monthsShort : 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
 	    monthsParseExact : true,
 	    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
 	    weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
@@ -46491,7 +46373,7 @@
 
 
 /***/ }),
-/* 378 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46524,7 +46406,7 @@
 
 	var deAt = moment.defineLocale('de-at', {
 	    months : 'Jänner_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-	    monthsShort : 'Jän._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
+	    monthsShort : 'Jän._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
 	    monthsParseExact : true,
 	    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
 	    weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
@@ -46575,7 +46457,7 @@
 
 
 /***/ }),
-/* 379 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46607,7 +46489,7 @@
 
 	var deCh = moment.defineLocale('de-ch', {
 	    months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-	    monthsShort : 'Jan._Febr._März_April_Mai_Juni_Juli_Aug._Sept._Okt._Nov._Dez.'.split('_'),
+	    monthsShort : 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
 	    monthsParseExact : true,
 	    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
 	    weekdaysShort : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
@@ -46658,7 +46540,7 @@
 
 
 /***/ }),
-/* 380 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46763,7 +46645,7 @@
 
 
 /***/ }),
-/* 381 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46787,7 +46669,7 @@
 	    months : function (momentToFormat, format) {
 	        if (!momentToFormat) {
 	            return this._monthsNominativeEl;
-	        } else if (/D/.test(format.substring(0, format.indexOf('MMMM')))) { // if there is a day number before 'MMMM'
+	        } else if (typeof format === 'string' && /D/.test(format.substring(0, format.indexOf('MMMM')))) { // if there is a day number before 'MMMM'
 	            return this._monthsGenitiveEl[momentToFormat.month()];
 	        } else {
 	            return this._monthsNominativeEl[momentToFormat.month()];
@@ -46868,7 +46750,7 @@
 
 
 /***/ }),
-/* 382 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46940,7 +46822,7 @@
 
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47008,7 +46890,7 @@
 
 
 /***/ }),
-/* 384 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47080,7 +46962,7 @@
 
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47152,7 +47034,7 @@
 
 
 /***/ }),
-/* 386 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47224,7 +47106,7 @@
 
 
 /***/ }),
-/* 387 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47302,7 +47184,7 @@
 
 
 /***/ }),
-/* 388 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47319,6 +47201,9 @@
 	var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
 	var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 
+	var monthsParse = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
+	var monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
+
 	var es = moment.defineLocale('es', {
 	    months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
 	    monthsShort : function (m, format) {
@@ -47330,7 +47215,13 @@
 	            return monthsShortDot[m.month()];
 	        }
 	    },
-	    monthsParseExact : true,
+	    monthsRegex : monthsRegex,
+	    monthsShortRegex : monthsRegex,
+	    monthsStrictRegex : /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i,
+	    monthsShortStrictRegex : /^(ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i,
+	    monthsParse : monthsParse,
+	    longMonthsParse : monthsParse,
+	    shortMonthsParse : monthsParse,
 	    weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
 	    weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
 	    weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
@@ -47390,7 +47281,7 @@
 
 
 /***/ }),
-/* 389 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47406,6 +47297,9 @@
 	var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
 	var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 
+	var monthsParse = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
+	var monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
+
 	var esDo = moment.defineLocale('es-do', {
 	    months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
 	    monthsShort : function (m, format) {
@@ -47417,7 +47311,13 @@
 	            return monthsShortDot[m.month()];
 	        }
 	    },
-	    monthsParseExact : true,
+	    monthsRegex: monthsRegex,
+	    monthsShortRegex: monthsRegex,
+	    monthsStrictRegex: /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i,
+	    monthsShortStrictRegex: /^(ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i,
+	    monthsParse: monthsParse,
+	    longMonthsParse: monthsParse,
+	    shortMonthsParse: monthsParse,
 	    weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
 	    weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
 	    weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
@@ -47477,7 +47377,95 @@
 
 
 /***/ }),
-/* 390 */
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	//! locale : Spanish(United State) [es-us]
+	//! author : bustta : https://github.com/bustta
+
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(354)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+
+
+	var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
+	var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+
+	var esUs = moment.defineLocale('es-us', {
+	    months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
+	    monthsShort : function (m, format) {
+	        if (!m) {
+	            return monthsShortDot;
+	        } else if (/-MMM-/.test(format)) {
+	            return monthsShort[m.month()];
+	        } else {
+	            return monthsShortDot[m.month()];
+	        }
+	    },
+	    monthsParseExact : true,
+	    weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
+	    weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
+	    weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
+	    weekdaysParseExact : true,
+	    longDateFormat : {
+	        LT : 'H:mm',
+	        LTS : 'H:mm:ss',
+	        L : 'MM/DD/YYYY',
+	        LL : 'MMMM [de] D [de] YYYY',
+	        LLL : 'MMMM [de] D [de] YYYY H:mm',
+	        LLLL : 'dddd, MMMM [de] D [de] YYYY H:mm'
+	    },
+	    calendar : {
+	        sameDay : function () {
+	            return '[hoy a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	        },
+	        nextDay : function () {
+	            return '[mañana a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	        },
+	        nextWeek : function () {
+	            return 'dddd [a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	        },
+	        lastDay : function () {
+	            return '[ayer a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	        },
+	        lastWeek : function () {
+	            return '[el] dddd [pasado a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+	        },
+	        sameElse : 'L'
+	    },
+	    relativeTime : {
+	        future : 'en %s',
+	        past : 'hace %s',
+	        s : 'unos segundos',
+	        m : 'un minuto',
+	        mm : '%d minutos',
+	        h : 'una hora',
+	        hh : '%d horas',
+	        d : 'un día',
+	        dd : '%d días',
+	        M : 'un mes',
+	        MM : '%d meses',
+	        y : 'un año',
+	        yy : '%d años'
+	    },
+	    dayOfMonthOrdinalParse : /\d{1,2}º/,
+	    ordinal : '%dº',
+	    week : {
+	        dow : 0, // Sunday is the first day of the week.
+	        doy : 6  // The week that contains Jan 1st is the first week of the year.
+	    }
+	});
+
+	return esUs;
+
+	})));
+
+
+/***/ }),
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47562,7 +47550,7 @@
 
 
 /***/ }),
-/* 391 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47633,7 +47621,7 @@
 
 
 /***/ }),
-/* 392 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47745,7 +47733,7 @@
 
 
 /***/ }),
-/* 393 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47857,7 +47845,7 @@
 
 
 /***/ }),
-/* 394 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -47922,7 +47910,7 @@
 
 
 /***/ }),
-/* 395 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48010,7 +47998,7 @@
 
 
 /***/ }),
-/* 396 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48089,7 +48077,7 @@
 
 
 /***/ }),
-/* 397 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48172,7 +48160,7 @@
 
 
 /***/ }),
-/* 398 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48252,7 +48240,7 @@
 
 
 /***/ }),
-/* 399 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48333,7 +48321,7 @@
 
 
 /***/ }),
-/* 400 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48415,7 +48403,7 @@
 
 
 /***/ }),
-/* 401 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48542,7 +48530,136 @@
 
 
 /***/ }),
-/* 402 */
+/* 404 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	//! locale : Gujarati [gu]
+	//! author : Kaushik Thanki : https://github.com/Kaushik1987
+
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(354)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+
+
+	var symbolMap = {
+	        '1': '૧',
+	        '2': '૨',
+	        '3': '૩',
+	        '4': '૪',
+	        '5': '૫',
+	        '6': '૬',
+	        '7': '૭',
+	        '8': '૮',
+	        '9': '૯',
+	        '0': '૦'
+	    };
+	var numberMap = {
+	        '૧': '1',
+	        '૨': '2',
+	        '૩': '3',
+	        '૪': '4',
+	        '૫': '5',
+	        '૬': '6',
+	        '૭': '7',
+	        '૮': '8',
+	        '૯': '9',
+	        '૦': '0'
+	    };
+
+	var gu = moment.defineLocale('gu', {
+	    months: 'જાન્યુઆરી_ફેબ્રુઆરી_માર્ચ_એપ્રિલ_મે_જૂન_જુલાઈ_ઑગસ્ટ_સપ્ટેમ્બર_ઑક્ટ્બર_નવેમ્બર_ડિસેમ્બર'.split('_'),
+	    monthsShort: 'જાન્યુ._ફેબ્રુ._માર્ચ_એપ્રિ._મે_જૂન_જુલા._ઑગ._સપ્ટે._ઑક્ટ્._નવે._ડિસે.'.split('_'),
+	    monthsParseExact: true,
+	    weekdays: 'રવિવાર_સોમવાર_મંગળવાર_બુધ્વાર_ગુરુવાર_શુક્રવાર_શનિવાર'.split('_'),
+	    weekdaysShort: 'રવિ_સોમ_મંગળ_બુધ્_ગુરુ_શુક્ર_શનિ'.split('_'),
+	    weekdaysMin: 'ર_સો_મં_બુ_ગુ_શુ_શ'.split('_'),
+	    longDateFormat: {
+	        LT: 'A h:mm વાગ્યે',
+	        LTS: 'A h:mm:ss વાગ્યે',
+	        L: 'DD/MM/YYYY',
+	        LL: 'D MMMM YYYY',
+	        LLL: 'D MMMM YYYY, A h:mm વાગ્યે',
+	        LLLL: 'dddd, D MMMM YYYY, A h:mm વાગ્યે'
+	    },
+	    calendar: {
+	        sameDay: '[આજ] LT',
+	        nextDay: '[કાલે] LT',
+	        nextWeek: 'dddd, LT',
+	        lastDay: '[ગઇકાલે] LT',
+	        lastWeek: '[પાછલા] dddd, LT',
+	        sameElse: 'L'
+	    },
+	    relativeTime: {
+	        future: '%s મા',
+	        past: '%s પેહલા',
+	        s: 'અમુક પળો',
+	        m: 'એક મિનિટ',
+	        mm: '%d મિનિટ',
+	        h: 'એક કલાક',
+	        hh: '%d કલાક',
+	        d: 'એક દિવસ',
+	        dd: '%d દિવસ',
+	        M: 'એક મહિનો',
+	        MM: '%d મહિનો',
+	        y: 'એક વર્ષ',
+	        yy: '%d વર્ષ'
+	    },
+	    preparse: function (string) {
+	        return string.replace(/[૧૨૩૪૫૬૭૮૯૦]/g, function (match) {
+	            return numberMap[match];
+	        });
+	    },
+	    postformat: function (string) {
+	        return string.replace(/\d/g, function (match) {
+	            return symbolMap[match];
+	        });
+	    },
+	    // Gujarati notation for meridiems are quite fuzzy in practice. While there exists
+	    // a rigid notion of a 'Pahar' it is not used as rigidly in modern Gujarati.
+	    meridiemParse: /રાત|બપોર|સવાર|સાંજ/,
+	    meridiemHour: function (hour, meridiem) {
+	        if (hour === 12) {
+	            hour = 0;
+	        }
+	        if (meridiem === 'રાત') {
+	            return hour < 4 ? hour : hour + 12;
+	        } else if (meridiem === 'સવાર') {
+	            return hour;
+	        } else if (meridiem === 'બપોર') {
+	            return hour >= 10 ? hour : hour + 12;
+	        } else if (meridiem === 'સાંજ') {
+	            return hour + 12;
+	        }
+	    },
+	    meridiem: function (hour, minute, isLower) {
+	        if (hour < 4) {
+	            return 'રાત';
+	        } else if (hour < 10) {
+	            return 'સવાર';
+	        } else if (hour < 17) {
+	            return 'બપોર';
+	        } else if (hour < 20) {
+	            return 'સાંજ';
+	        } else {
+	            return 'રાત';
+	        }
+	    },
+	    week: {
+	        dow: 0, // Sunday is the first day of the week.
+	        doy: 6 // The week that contains Jan 1st is the first week of the year.
+	    }
+	});
+
+	return gu;
+
+	})));
+
+
+/***/ }),
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48646,7 +48763,7 @@
 
 
 /***/ }),
-/* 403 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48775,7 +48892,7 @@
 
 
 /***/ }),
-/* 404 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -48925,7 +49042,7 @@
 
 
 /***/ }),
-/* 405 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49039,7 +49156,7 @@
 
 
 /***/ }),
-/* 406 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49139,7 +49256,7 @@
 
 
 /***/ }),
-/* 407 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49227,7 +49344,7 @@
 
 
 /***/ }),
-/* 408 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49359,7 +49476,7 @@
 
 
 /***/ }),
-/* 409 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49434,7 +49551,7 @@
 
 
 /***/ }),
-/* 410 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49519,7 +49636,7 @@
 
 
 /***/ }),
-/* 411 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49607,7 +49724,7 @@
 
 
 /***/ }),
-/* 412 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49701,7 +49818,7 @@
 
 
 /***/ }),
-/* 413 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49793,7 +49910,7 @@
 
 
 /***/ }),
-/* 414 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49856,7 +49973,7 @@
 
 
 /***/ }),
-/* 415 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -49987,7 +50104,7 @@
 
 
 /***/ }),
-/* 416 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50044,8 +50161,22 @@
 	        y : '일 년',
 	        yy : '%d년'
 	    },
-	    dayOfMonthOrdinalParse : /\d{1,2}일/,
-	    ordinal : '%d일',
+	    dayOfMonthOrdinalParse : /\d{1,2}(일|월|주)/,
+	    ordinal : function (number, period) {
+	        switch (period) {
+	            case 'd':
+	            case 'D':
+	            case 'DDD':
+	                return number + '일';
+	            case 'M':
+	                return number + '월';
+	            case 'w':
+	            case 'W':
+	                return number + '주';
+	            default:
+	                return number;
+	        }
+	    },
 	    meridiemParse : /오전|오후/,
 	    isPM : function (token) {
 	        return token === '오후';
@@ -50061,7 +50192,7 @@
 
 
 /***/ }),
-/* 417 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50154,7 +50285,7 @@
 
 
 /***/ }),
-/* 418 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50296,7 +50427,7 @@
 
 
 /***/ }),
-/* 419 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50371,7 +50502,7 @@
 
 
 /***/ }),
-/* 420 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50493,7 +50624,7 @@
 
 
 /***/ }),
-/* 421 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50595,7 +50726,7 @@
 
 
 /***/ }),
-/* 422 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50711,7 +50842,7 @@
 
 
 /***/ }),
-/* 423 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50780,7 +50911,7 @@
 
 
 /***/ }),
-/* 424 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50875,7 +51006,7 @@
 
 
 /***/ }),
-/* 425 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50961,7 +51092,7 @@
 
 
 /***/ }),
-/* 426 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51125,7 +51256,7 @@
 
 
 /***/ }),
-/* 427 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51212,7 +51343,7 @@
 
 
 /***/ }),
-/* 428 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51300,7 +51431,7 @@
 
 
 /***/ }),
-/* 429 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51401,7 +51532,7 @@
 
 
 /***/ }),
-/* 430 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51469,7 +51600,7 @@
 
 
 /***/ }),
-/* 431 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51597,7 +51728,7 @@
 
 
 /***/ }),
-/* 432 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51641,7 +51772,7 @@
 
 	    weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
 	    weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
-	    weekdaysMin : 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
+	    weekdaysMin : 'zo_ma_di_wo_do_vr_za'.split('_'),
 	    weekdaysParseExact : true,
 	    longDateFormat : {
 	        LT : 'HH:mm',
@@ -51690,7 +51821,7 @@
 
 
 /***/ }),
-/* 433 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51734,7 +51865,7 @@
 
 	    weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
 	    weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
-	    weekdaysMin : 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
+	    weekdaysMin : 'zo_ma_di_wo_do_vr_za'.split('_'),
 	    weekdaysParseExact : true,
 	    longDateFormat : {
 	        LT : 'HH:mm',
@@ -51783,7 +51914,7 @@
 
 
 /***/ }),
-/* 434 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51848,7 +51979,7 @@
 
 
 /***/ }),
-/* 435 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51977,7 +52108,7 @@
 
 
 /***/ }),
-/* 436 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52044,7 +52175,24 @@
 	    calendar : {
 	        sameDay: '[Dziś o] LT',
 	        nextDay: '[Jutro o] LT',
-	        nextWeek: '[W] dddd [o] LT',
+	        nextWeek: function () {
+	            switch (this.day()) {
+	                case 0:
+	                    return '[W niedzielę o] LT';
+
+	                case 2:
+	                    return '[We wtorek o] LT';
+
+	                case 3:
+	                    return '[W środę o] LT';
+
+	                case 6:
+	                    return '[W sobotę o] LT';
+
+	                default:
+	                    return '[W] dddd [o] LT';
+	            }
+	        },
 	        lastDay: '[Wczoraj o] LT',
 	        lastWeek: function () {
 	            switch (this.day()) {
@@ -52089,7 +52237,7 @@
 
 
 /***/ }),
-/* 437 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52104,9 +52252,9 @@
 
 
 	var pt = moment.defineLocale('pt', {
-	    months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-	    monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
-	    weekdays : 'Domingo_Segunda-Feira_Terça-Feira_Quarta-Feira_Quinta-Feira_Sexta-Feira_Sábado'.split('_'),
+	    months : 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
+	    monthsShort : 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
+	    weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
 	    weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
 	    weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
 	    weekdaysParseExact : true,
@@ -52159,7 +52307,7 @@
 
 
 /***/ }),
-/* 438 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52174,8 +52322,8 @@
 
 
 	var ptBr = moment.defineLocale('pt-br', {
-	    months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-	    monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
+	    months : 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
+	    monthsShort : 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
 	    weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
 	    weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
 	    weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
@@ -52204,6 +52352,7 @@
 	        future : 'em %s',
 	        past : '%s atrás',
 	        s : 'poucos segundos',
+	        ss : '%d segundos',
 	        m : 'um minuto',
 	        mm : '%d minutos',
 	        h : 'uma hora',
@@ -52225,7 +52374,7 @@
 
 
 /***/ }),
-/* 439 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52305,7 +52454,7 @@
 
 
 /***/ }),
-/* 440 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52483,7 +52632,7 @@
 	    },
 	    week : {
 	        dow : 1, // Monday is the first day of the week.
-	        doy : 7  // The week that contains Jan 1st is the first week of the year.
+	        doy : 4  // The week that contains Jan 4th is the first week of the year.
 	    }
 	});
 
@@ -52493,7 +52642,7 @@
 
 
 /***/ }),
-/* 441 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52596,7 +52745,7 @@
 
 
 /***/ }),
-/* 442 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52662,7 +52811,7 @@
 
 
 /***/ }),
-/* 443 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52738,7 +52887,7 @@
 
 
 /***/ }),
-/* 444 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52893,7 +53042,7 @@
 
 
 /***/ }),
-/* 445 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53060,7 +53209,7 @@
 
 
 /***/ }),
-/* 446 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53135,7 +53284,7 @@
 
 
 /***/ }),
-/* 447 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53250,7 +53399,7 @@
 
 
 /***/ }),
-/* 448 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53365,7 +53514,7 @@
 
 
 /***/ }),
-/* 449 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53459,7 +53608,7 @@
 
 
 /***/ }),
-/* 450 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53533,7 +53682,7 @@
 
 
 /***/ }),
-/* 451 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53597,7 +53746,7 @@
 
 
 /***/ }),
-/* 452 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53732,7 +53881,7 @@
 
 
 /***/ }),
-/* 453 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53826,7 +53975,7 @@
 
 
 /***/ }),
-/* 454 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53899,7 +54048,7 @@
 
 
 /***/ }),
-/* 455 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53971,7 +54120,7 @@
 
 
 /***/ }),
-/* 456 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54038,7 +54187,7 @@
 
 
 /***/ }),
-/* 457 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54163,7 +54312,7 @@
 
 
 /***/ }),
-/* 458 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54216,9 +54365,9 @@
 	    calendar : {
 	        sameDay : '[bugün saat] LT',
 	        nextDay : '[yarın saat] LT',
-	        nextWeek : '[haftaya] dddd [saat] LT',
+	        nextWeek : '[gelecek] dddd [saat] LT',
 	        lastDay : '[dün] LT',
-	        lastWeek : '[geçen hafta] dddd [saat] LT',
+	        lastWeek : '[geçen] dddd [saat] LT',
 	        sameElse : 'L'
 	    },
 	    relativeTime : {
@@ -54258,7 +54407,7 @@
 
 
 /***/ }),
-/* 459 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54354,7 +54503,7 @@
 
 
 /***/ }),
-/* 460 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54417,7 +54566,7 @@
 
 
 /***/ }),
-/* 461 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54480,7 +54629,7 @@
 
 
 /***/ }),
-/* 462 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54636,7 +54785,7 @@
 
 
 /***/ }),
-/* 463 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54740,7 +54889,7 @@
 
 
 /***/ }),
-/* 464 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54803,7 +54952,7 @@
 
 
 /***/ }),
-/* 465 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54866,7 +55015,7 @@
 
 
 /***/ }),
-/* 466 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54950,7 +55099,7 @@
 
 
 /***/ }),
-/* 467 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55023,7 +55172,7 @@
 
 
 /***/ }),
-/* 468 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55088,7 +55237,7 @@
 
 
 /***/ }),
-/* 469 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55204,7 +55353,7 @@
 
 
 /***/ }),
-/* 470 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55314,7 +55463,7 @@
 
 
 /***/ }),
-/* 471 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55423,7 +55572,7 @@
 
 
 /***/ }),
-/* 472 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55438,15 +55587,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _year_dropdown_options = __webpack_require__(475);
+	var _year_dropdown_options = __webpack_require__(478);
 
 	var _year_dropdown_options2 = _interopRequireDefault(_year_dropdown_options);
 
-	var _reactOnclickoutside = __webpack_require__(477);
+	var _reactOnclickoutside = __webpack_require__(480);
 
 	var _reactOnclickoutside2 = _interopRequireDefault(_reactOnclickoutside);
 
@@ -55576,16 +55725,14 @@
 	exports.default = YearDropdown;
 
 /***/ }),
-/* 473 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 */
 
 	if (false) {
@@ -55607,21 +55754,19 @@
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(474)();
+	  module.exports = __webpack_require__(477)();
 	}
 
 
 /***/ }),
-/* 474 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 */
 
 	'use strict';
@@ -55666,7 +55811,8 @@
 	    objectOf: getShim,
 	    oneOf: getShim,
 	    oneOfType: getShim,
-	    shape: getShim
+	    shape: getShim,
+	    exact: getShim
 	  };
 
 	  ReactPropTypes.checkPropTypes = emptyFunction;
@@ -55677,7 +55823,7 @@
 
 
 /***/ }),
-/* 475 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55692,11 +55838,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _classnames = __webpack_require__(476);
+	var _classnames = __webpack_require__(479);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -55827,7 +55973,7 @@
 	exports.default = YearDropdownOptions;
 
 /***/ }),
-/* 476 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -55881,28 +56027,30 @@
 
 
 /***/ }),
-/* 477 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
+	exports.__esModule = true;
+	exports.IGNORE_CLASS_NAME = undefined;
 	exports.default = onClickOutsideHOC;
 
 	var _react = __webpack_require__(2);
 
 	var _reactDom = __webpack_require__(32);
 
-	var _generateOutsideCheck = __webpack_require__(478);
+	var _domHelpers = __webpack_require__(481);
 
-	var _generateOutsideCheck2 = _interopRequireDefault(_generateOutsideCheck);
+	var DOMHelpers = _interopRequireWildcard(_domHelpers);
+
+	var _uid = __webpack_require__(482);
+
+	var _uid2 = _interopRequireDefault(_uid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -55910,11 +56058,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	/**
-	 * A higher-order-component for handling onClickOutside for React components.
-	 */
-	var registeredComponents = [];
-	var handlers = [];
+	var handlersMap = {};
+	var enabledInstances = {};
+
+	var touchEvents = ['touchstart', 'touchmove'];
+	var IGNORE_CLASS_NAME = exports.IGNORE_CLASS_NAME = 'ignore-react-onclickoutside';
 
 	/**
 	 * This function generates the HOC function that you'll use
@@ -55924,36 +56072,85 @@
 	 * onClickOutsideHOC function defined inside setupHOC().
 	 */
 	function onClickOutsideHOC(WrappedComponent, config) {
-	  var _class, _temp2;
+	  var _class, _temp;
 
-	  return _temp2 = _class = function (_Component) {
+	  return _temp = _class = function (_Component) {
 	    _inherits(onClickOutside, _Component);
 
-	    function onClickOutside() {
-	      var _ref;
-
-	      var _temp, _this, _ret;
-
+	    function onClickOutside(props) {
 	      _classCallCheck(this, onClickOutside);
 
-	      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	        args[_key] = arguments[_key];
-	      }
+	      var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
-	      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = onClickOutside.__proto__ || Object.getPrototypeOf(onClickOutside)).call.apply(_ref, [this].concat(args))), _this), _this.__outsideClickHandler = null, _this.enableOnClickOutside = function () {
-	        var fn = _this.__outsideClickHandler;
-	        if (fn && typeof document !== 'undefined') {
-	          var events = _this.props.eventTypes;
-	          if (!events.forEach) {
-	            events = [events];
-	          }
-	          events.forEach(function (eventName) {
-	            var handlerOptions = !_this.props.preventDefault && ['touchstart', 'touchmove'].indexOf(eventName) !== -1 ? { passive: true } : null;
-	            document.addEventListener(eventName, fn, handlerOptions);
-	          });
+	      _this.__outsideClickHandler = function (event) {
+	        if (typeof _this.__clickOutsideHandlerProp === 'function') {
+	          _this.__clickOutsideHandlerProp(event);
+	          return;
 	        }
-	      }, _this.disableOnClickOutside = function () {
-	        var fn = _this.__outsideClickHandler;
+
+	        var instance = _this.getInstance();
+
+	        if (typeof instance.props.handleClickOutside === 'function') {
+	          instance.props.handleClickOutside(event);
+	          return;
+	        }
+
+	        if (typeof instance.handleClickOutside === 'function') {
+	          instance.handleClickOutside(event);
+	          return;
+	        }
+
+	        throw new Error('WrappedComponent lacks a handleClickOutside(event) function for processing outside click events.');
+	      };
+
+	      _this.enableOnClickOutside = function () {
+	        if (typeof document === 'undefined' || enabledInstances[_this._uid]) return;
+	        enabledInstances[_this._uid] = true;
+
+	        var events = _this.props.eventTypes;
+	        if (!events.forEach) {
+	          events = [events];
+	        }
+
+	        handlersMap[_this._uid] = function (event) {
+	          if (_this.props.disableOnClickOutside) return;
+	          if (_this.componentNode === null) return;
+
+	          if (_this.props.preventDefault) {
+	            event.preventDefault();
+	          }
+
+	          if (_this.props.stopPropagation) {
+	            event.stopPropagation();
+	          }
+
+	          if (_this.props.excludeScrollbar && DOMHelpers.clickedScrollbar(event)) return;
+
+	          var current = event.target;
+
+	          if (DOMHelpers.findHighest(current, _this.componentNode, _this.props.outsideClickIgnoreClass) !== document) {
+	            return;
+	          }
+
+	          _this.__outsideClickHandler(event);
+	        };
+
+	        events.forEach(function (eventName) {
+	          var handlerOptions = null;
+	          var isTouchEvent = touchEvents.indexOf(eventName) !== -1;
+
+	          if (isTouchEvent) {
+	            handlerOptions = { passive: !_this.props.preventDefault };
+	          }
+
+	          document.addEventListener(eventName, handlersMap[_this._uid], handlerOptions);
+	        });
+	      };
+
+	      _this.disableOnClickOutside = function () {
+	        delete enabledInstances[_this._uid];
+	        var fn = handlersMap[_this._uid];
+
 	        if (fn && typeof document !== 'undefined') {
 	          var events = _this.props.eventTypes;
 	          if (!events.forEach) {
@@ -55962,205 +56159,128 @@
 	          events.forEach(function (eventName) {
 	            return document.removeEventListener(eventName, fn);
 	          });
+	          delete handlersMap[_this._uid];
 	        }
-	      }, _this.getRef = function (ref) {
+	      };
+
+	      _this.getRef = function (ref) {
 	        return _this.instanceRef = ref;
-	      }, _temp), _possibleConstructorReturn(_this, _ret);
+	      };
+
+	      _this._uid = (0, _uid2.default)();
+	      return _this;
 	    }
 
-	    _createClass(onClickOutside, [{
-	      key: 'getInstance',
+	    /**
+	     * Access the WrappedComponent's instance.
+	     */
 
 
-	      /**
-	       * Access the WrappedComponent's instance.
-	       */
-	      value: function getInstance() {
-	        if (!WrappedComponent.prototype.isReactComponent) {
-	          return this;
-	        }
-	        var ref = this.instanceRef;
-	        return ref.getInstance ? ref.getInstance() : ref;
+	    onClickOutside.prototype.getInstance = function getInstance() {
+	      if (!WrappedComponent.prototype.isReactComponent) {
+	        return this;
+	      }
+	      var ref = this.instanceRef;
+	      return ref.getInstance ? ref.getInstance() : ref;
+	    };
+
+	    /**
+	     * Add click listeners to the current document,
+	     * linked to this component's state.
+	     */
+	    onClickOutside.prototype.componentDidMount = function componentDidMount() {
+	      // If we are in an environment without a DOM such
+	      // as shallow rendering or snapshots then we exit
+	      // early to prevent any unhandled errors being thrown.
+	      if (typeof document === 'undefined' || !document.createElement) {
+	        return;
 	      }
 
-	      // this is given meaning in componentDidMount/componentDidUpdate
+	      var instance = this.getInstance();
 
-	    }, {
-	      key: 'componentDidMount',
-
-
-	      /**
-	       * Add click listeners to the current document,
-	       * linked to this component's state.
-	       */
-	      value: function componentDidMount() {
-	        // If we are in an environment without a DOM such
-	        // as shallow rendering or snapshots then we exit
-	        // early to prevent any unhandled errors being thrown.
-	        if (typeof document === 'undefined' || !document.createElement) {
-	          return;
-	        }
-
-	        var instance = this.getInstance();
-
-	        if (config && typeof config.handleClickOutside === 'function') {
-	          this.__clickOutsideHandlerProp = config.handleClickOutside(instance);
-	          if (typeof this.__clickOutsideHandlerProp !== 'function') {
-	            throw new Error('WrappedComponent lacks a function for processing outside click events specified by the handleClickOutside config option.');
-	          }
-	        } else if (typeof instance.handleClickOutside === 'function') {
-	          if (_react.Component.prototype.isPrototypeOf(instance)) {
-	            this.__clickOutsideHandlerProp = instance.handleClickOutside.bind(instance);
-	          } else {
-	            this.__clickOutsideHandlerProp = instance.handleClickOutside;
-	          }
-	        } else if (typeof instance.props.handleClickOutside === 'function') {
-	          this.__clickOutsideHandlerProp = instance.props.handleClickOutside;
-	        } else {
-	          throw new Error('WrappedComponent lacks a handleClickOutside(event) function for processing outside click events.');
-	        }
-
-	        // TODO: try to get rid of this, could be done with function ref, might be problematic for SFC though, they do not expose refs
-	        if ((0, _reactDom.findDOMNode)(instance) === null) {
-	          return;
-	        }
-
-	        this.addOutsideClickHandler();
-	      }
-
-	      /**
-	      * Track for disableOnClickOutside props changes and enable/disable click outside
-	      */
-
-	    }, {
-	      key: 'componentWillReceiveProps',
-	      value: function componentWillReceiveProps(nextProps) {
-	        if (this.props.disableOnClickOutside && !nextProps.disableOnClickOutside) {
-	          this.enableOnClickOutside();
-	        } else if (!this.props.disableOnClickOutside && nextProps.disableOnClickOutside) {
-	          this.disableOnClickOutside();
-	        }
-	      }
-	    }, {
-	      key: 'componentDidUpdate',
-	      value: function componentDidUpdate() {
-	        var componentNode = (0, _reactDom.findDOMNode)(this.getInstance());
-
-	        if (componentNode === null && this.__outsideClickHandler) {
-	          this.removeOutsideClickHandler();
-	          return;
-	        }
-
-	        if (componentNode !== null && !this.__outsideClickHandler) {
-	          this.addOutsideClickHandler();
-	          return;
+	      if (config && typeof config.handleClickOutside === 'function') {
+	        this.__clickOutsideHandlerProp = config.handleClickOutside(instance);
+	        if (typeof this.__clickOutsideHandlerProp !== 'function') {
+	          throw new Error('WrappedComponent lacks a function for processing outside click events specified by the handleClickOutside config option.');
 	        }
 	      }
 
-	      /**
-	       * Remove all document's event listeners for this component
-	       */
+	      this.componentNode = (0, _reactDom.findDOMNode)(this.getInstance());
+	      this.enableOnClickOutside();
+	    };
 
-	    }, {
-	      key: 'componentWillUnmount',
-	      value: function componentWillUnmount() {
-	        this.removeOutsideClickHandler();
+	    onClickOutside.prototype.componentDidUpdate = function componentDidUpdate() {
+	      this.componentNode = (0, _reactDom.findDOMNode)(this.getInstance());
+	    };
+
+	    /**
+	     * Remove all document's event listeners for this component
+	     */
+
+
+	    onClickOutside.prototype.componentWillUnmount = function componentWillUnmount() {
+	      this.disableOnClickOutside();
+	    };
+
+	    /**
+	     * Can be called to explicitly enable event listening
+	     * for clicks and touches outside of this element.
+	     */
+
+
+	    /**
+	     * Can be called to explicitly disable event listening
+	     * for clicks and touches outside of this element.
+	     */
+
+
+	    /**
+	     * Pass-through render
+	     */
+	    onClickOutside.prototype.render = function render() {
+	      var _this2 = this;
+
+	      var props = Object.keys(this.props).filter(function (prop) {
+	        return prop !== 'excludeScrollbar';
+	      }).reduce(function (props, prop) {
+	        props[prop] = _this2.props[prop];
+	        return props;
+	      }, {});
+
+	      if (WrappedComponent.prototype.isReactComponent) {
+	        props.ref = this.getRef;
+	      } else {
+	        props.wrappedRef = this.getRef;
 	      }
 
-	      /**
-	       * Can be called to explicitly enable event listening
-	       * for clicks and touches outside of this element.
-	       */
+	      props.disableOnClickOutside = this.disableOnClickOutside;
+	      props.enableOnClickOutside = this.enableOnClickOutside;
 
-
-	      /**
-	       * Can be called to explicitly disable event listening
-	       * for clicks and touches outside of this element.
-	       */
-
-	    }, {
-	      key: 'addOutsideClickHandler',
-	      value: function addOutsideClickHandler() {
-	        var fn = this.__outsideClickHandler = (0, _generateOutsideCheck2.default)((0, _reactDom.findDOMNode)(this.getInstance()), this.__clickOutsideHandlerProp, this.props.outsideClickIgnoreClass, this.props.excludeScrollbar, this.props.preventDefault, this.props.stopPropagation);
-
-	        var pos = registeredComponents.length;
-	        registeredComponents.push(this);
-	        handlers[pos] = fn;
-
-	        // If there is a truthy disableOnClickOutside property for this
-	        // component, don't immediately start listening for outside events.
-	        if (!this.props.disableOnClickOutside) {
-	          this.enableOnClickOutside();
-	        }
-	      }
-	    }, {
-	      key: 'removeOutsideClickHandler',
-	      value: function removeOutsideClickHandler() {
-	        this.disableOnClickOutside();
-	        this.__outsideClickHandler = false;
-
-	        var pos = registeredComponents.indexOf(this);
-
-	        if (pos > -1) {
-	          // clean up so we don't leak memory
-	          if (handlers[pos]) {
-	            handlers.splice(pos, 1);
-	          }
-	          registeredComponents.splice(pos, 1);
-	        }
-	      }
-	    }, {
-	      key: 'render',
-
-
-	      /**
-	       * Pass-through render
-	       */
-	      value: function render() {
-	        var _this2 = this;
-
-	        var props = Object.keys(this.props).filter(function (prop) {
-	          return prop !== 'excludeScrollbar';
-	        }).reduce(function (props, prop) {
-	          props[prop] = _this2.props[prop];
-	          return props;
-	        }, {});
-
-	        if (WrappedComponent.prototype.isReactComponent) {
-	          props.ref = this.getRef;
-	        } else {
-	          props.wrappedRef = this.getRef;
-	        }
-
-	        props.disableOnClickOutside = this.disableOnClickOutside;
-	        props.enableOnClickOutside = this.enableOnClickOutside;
-
-	        return (0, _react.createElement)(WrappedComponent, props);
-	      }
-	    }]);
+	      return (0, _react.createElement)(WrappedComponent, props);
+	    };
 
 	    return onClickOutside;
 	  }(_react.Component), _class.displayName = 'OnClickOutside(' + (WrappedComponent.displayName || WrappedComponent.name || 'Component') + ')', _class.defaultProps = {
 	    eventTypes: ['mousedown', 'touchstart'],
 	    excludeScrollbar: config && config.excludeScrollbar || false,
-	    outsideClickIgnoreClass: 'ignore-react-onclickoutside',
+	    outsideClickIgnoreClass: IGNORE_CLASS_NAME,
 	    preventDefault: false,
 	    stopPropagation: false
 	  }, _class.getClass = function () {
 	    return WrappedComponent.getClass ? WrappedComponent.getClass() : WrappedComponent;
-	  }, _temp2;
+	  }, _temp;
 	}
 
 /***/ }),
-/* 478 */
+/* 481 */
 /***/ (function(module, exports) {
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = generateOutsideCheck;
+	exports.__esModule = true;
+	exports.isNodeFound = isNodeFound;
+	exports.findHighest = findHighest;
+	exports.clickedScrollbar = clickedScrollbar;
 	/**
 	 * Check whether some DOM node is our Component's node.
 	 */
@@ -56210,28 +56330,25 @@
 	  return document.documentElement.clientWidth <= evt.clientX || document.documentElement.clientHeight <= evt.clientY;
 	}
 
-	/**
-	 * Generate the event handler that checks whether a clicked DOM node
-	 * is inside of, or lives outside of, our Component's node tree.
-	 */
-	function generateOutsideCheck(componentNode, eventHandler, ignoreClass, excludeScrollbar, preventDefault, stopPropagation) {
-	  return function (evt) {
-	    if (preventDefault) {
-	      evt.preventDefault();
-	    }
-	    if (stopPropagation) {
-	      evt.stopPropagation();
-	    }
-	    var current = evt.target;
-	    if (excludeScrollbar && clickedScrollbar(evt) || findHighest(current, componentNode, ignoreClass) !== document) {
-	      return;
-	    }
-	    eventHandler(evt);
+/***/ }),
+/* 482 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	function autoInc() {
+	  var seed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+	  return function () {
+	    return ++seed;
 	  };
 	}
 
+	exports.default = autoInc();
+
 /***/ }),
-/* 479 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56246,15 +56363,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _month_dropdown_options = __webpack_require__(480);
+	var _month_dropdown_options = __webpack_require__(484);
 
 	var _month_dropdown_options2 = _interopRequireDefault(_month_dropdown_options);
 
-	var _reactOnclickoutside = __webpack_require__(477);
+	var _reactOnclickoutside = __webpack_require__(480);
 
 	var _reactOnclickoutside2 = _interopRequireDefault(_reactOnclickoutside);
 
@@ -56385,7 +56502,7 @@
 	exports.default = MonthDropdown;
 
 /***/ }),
-/* 480 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56400,7 +56517,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -56472,7 +56589,7 @@
 	exports.default = MonthDropdownOptions;
 
 /***/ }),
-/* 481 */
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56487,15 +56604,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _classnames = __webpack_require__(476);
+	var _classnames = __webpack_require__(479);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _week = __webpack_require__(482);
+	var _week = __webpack_require__(486);
 
 	var _week2 = _interopRequireDefault(_week);
 
@@ -56649,7 +56766,7 @@
 	exports.default = Month;
 
 /***/ }),
-/* 482 */
+/* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56664,15 +56781,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _day = __webpack_require__(483);
+	var _day = __webpack_require__(487);
 
 	var _day2 = _interopRequireDefault(_day);
 
-	var _week_number = __webpack_require__(485);
+	var _week_number = __webpack_require__(489);
 
 	var _week_number2 = _interopRequireDefault(_week_number);
 
@@ -56793,7 +56910,7 @@
 	exports.default = Week;
 
 /***/ }),
-/* 483 */
+/* 487 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56814,15 +56931,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _classnames = __webpack_require__(476);
+	var _classnames = __webpack_require__(479);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _date_utils = __webpack_require__(484);
+	var _date_utils = __webpack_require__(488);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57046,7 +57163,7 @@
 	exports.default = Day;
 
 /***/ }),
-/* 484 */
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57220,7 +57337,7 @@
 	}
 
 /***/ }),
-/* 485 */
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57235,11 +57352,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _classnames = __webpack_require__(476);
+	var _classnames = __webpack_require__(479);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -57300,7 +57417,7 @@
 	exports.default = WeekNumber;
 
 /***/ }),
-/* 486 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57315,7 +57432,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -57323,7 +57440,7 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _date_utils = __webpack_require__(484);
+	var _date_utils = __webpack_require__(488);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57352,21 +57469,7 @@
 	        return;
 	      }
 
-	      _this.props.onTimeChange(time);
-	    }, _this.ulClasses = function () {
-	      var classes = ['react-datepicker__time-list'];
-
-	      if (_this.props.showYearDropdown || _this.props.showMonthDropdown) {
-	        classes.push('react-datepicker__time-list--with-dropdowns');
-	      }
-	      if (_this.props.todayButton) {
-	        classes.push('react-datepicker__time-list--with-today-button');
-	      }
-	      if (_this.props.withPortal) {
-	        classes.push('react-datepicker__time-list--with-portal');
-	      }
-
-	      return classes.join(' ');
+	      _this.props.onChange(time);
 	    }, _this.liClasses = function (time, currH, currM) {
 	      var classes = ['react-datepicker__time-list-item'];
 
@@ -57380,6 +57483,7 @@
 	      return classes.join(' ');
 	    }, _this.renderTimes = function () {
 	      var times = [];
+	      var format = _this.props.format ? _this.props.format : 'hh:mm A';
 	      var intervals = _this.props.intervals;
 	      var activeTime = _this.props.selected ? _this.props.selected : (0, _moment2.default)();
 	      var currH = activeTime.get('hours');
@@ -57394,7 +57498,7 @@
 	        return _react2.default.createElement(
 	          'li',
 	          { key: i, onClick: _this.handleClick.bind(_this, time), className: _this.liClasses(time, currH, currM) },
-	          time.format('hh:mm A')
+	          time.format(format)
 	        );
 	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -57404,14 +57508,20 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      // code to ensure selected time will always be in focus within time window when it first appears
-	      var node = this.refs.timeList;
 	      var multiplier = 60 / this.props.intervals;
 	      var currH = this.props.selected ? this.props.selected.get('hours') : (0, _moment2.default)().get('hours');
-	      node.scrollTop = 30 * (multiplier * currH);
+	      this.list.scrollTop = 30 * (multiplier * currH);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
+	      var height = null;
+	      if (this.props.monthRef) {
+	        height = this.props.monthRef.clientHeight - 39;
+	      }
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'react-datepicker__time-container ' + (this.props.todayButton ? 'react-datepicker__time-container--with-today-button' : '') },
@@ -57432,7 +57542,9 @@
 	            { className: 'react-datepicker__time-box' },
 	            _react2.default.createElement(
 	              'ul',
-	              { className: this.ulClasses(), ref: 'timeList' },
+	              { className: 'react-datepicker__time-list', ref: function ref(list) {
+	                  _this2.list = list;
+	                }, style: height ? { height: height } : {} },
 	              this.renderTimes.bind(this)()
 	            )
 	          )
@@ -57454,21 +57566,20 @@
 	}(_react2.default.Component);
 
 	Time.propTypes = {
+	  format: _propTypes2.default.string,
 	  intervals: _propTypes2.default.number,
 	  selected: _propTypes2.default.object,
-	  onTimeChange: _propTypes2.default.func,
+	  onChange: _propTypes2.default.func,
 	  todayButton: _propTypes2.default.string,
-	  showMonthDropdown: _propTypes2.default.bool,
-	  showYearDropdown: _propTypes2.default.bool,
-	  withPortal: _propTypes2.default.bool,
 	  minTime: _propTypes2.default.object,
 	  maxTime: _propTypes2.default.object,
-	  excludeTimes: _propTypes2.default.array
+	  excludeTimes: _propTypes2.default.array,
+	  monthRef: _propTypes2.default.object
 	};
 	exports.default = Time;
 
 /***/ }),
-/* 487 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57484,11 +57595,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _reactPopper = __webpack_require__(488);
+	var _reactPopper = __webpack_require__(492);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57568,7 +57679,7 @@
 	exports.default = PopperComponent;
 
 /***/ }),
-/* 488 */
+/* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57578,19 +57689,19 @@
 	});
 	exports.Arrow = exports.Popper = exports.Target = exports.Manager = undefined;
 
-	var _Manager2 = __webpack_require__(489);
+	var _Manager2 = __webpack_require__(493);
 
 	var _Manager3 = _interopRequireDefault(_Manager2);
 
-	var _Target2 = __webpack_require__(490);
+	var _Target2 = __webpack_require__(494);
 
 	var _Target3 = _interopRequireDefault(_Target2);
 
-	var _Popper2 = __webpack_require__(491);
+	var _Popper2 = __webpack_require__(495);
 
 	var _Popper3 = _interopRequireDefault(_Popper2);
 
-	var _Arrow2 = __webpack_require__(495);
+	var _Arrow2 = __webpack_require__(497);
 
 	var _Arrow3 = _interopRequireDefault(_Arrow2);
 
@@ -57602,7 +57713,7 @@
 	exports.Arrow = _Arrow3.default;
 
 /***/ }),
-/* 489 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57617,7 +57728,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -57693,7 +57804,7 @@
 	exports.default = Manager;
 
 /***/ }),
-/* 490 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57708,7 +57819,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -57761,7 +57872,7 @@
 	exports.default = Target;
 
 /***/ }),
-/* 491 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57778,17 +57889,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _popper = __webpack_require__(492);
+	var _popper = __webpack_require__(496);
 
 	var _popper2 = _interopRequireDefault(_popper);
-
-	var _isEqualShallow = __webpack_require__(493);
-
-	var _isEqualShallow2 = _interopRequireDefault(_isEqualShallow);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57824,11 +57931,21 @@
 	      _this._arrowNode = node;
 	    }, _this._getTargetNode = function () {
 	      return _this.context.popperManager.getTargetNode();
+	    }, _this._getOffsets = function (data) {
+	      return Object.keys(data.offsets).map(function (key) {
+	        return data.offsets[key];
+	      });
+	    }, _this._isDataDirty = function (data) {
+	      if (_this.state.data) {
+	        return JSON.stringify(_this._getOffsets(_this.state.data)) !== JSON.stringify(_this._getOffsets(data));
+	      } else {
+	        return true;
+	      }
 	    }, _this._updateStateModifier = {
 	      enabled: true,
 	      order: 900,
 	      fn: function fn(data) {
-	        if (_this.state.data && !(0, _isEqualShallow2.default)(data.offsets, _this.state.data.offsets) || !_this.state.data) {
+	        if (_this._isDataDirty(data)) {
 	          _this.setState({ data: data });
 	        }
 	        return data;
@@ -57858,6 +57975,8 @@
 	      }, data.styles);
 	    }, _this._getPopperPlacement = function () {
 	      return !!_this.state.data ? _this.state.data.placement : undefined;
+	    }, _this._getPopperHide = function () {
+	      return !!_this.state.data && _this.state.data.hide ? '' : undefined;
 	    }, _this._getArrowStyle = function () {
 	      if (!_this.state.data || !_this.state.data.offsets.arrow) {
 	        return {};
@@ -57967,12 +58086,15 @@
 	      };
 	      var popperStyle = this._getPopperStyle();
 	      var popperPlacement = this._getPopperPlacement();
+	      var popperHide = this._getPopperHide();
 
 	      if (typeof children === 'function') {
-	        var popperProps = _defineProperty({
+	        var _popperProps;
+
+	        var popperProps = (_popperProps = {
 	          ref: popperRef,
 	          style: popperStyle
-	        }, 'data-placement', popperPlacement);
+	        }, _defineProperty(_popperProps, 'data-placement', popperPlacement), _defineProperty(_popperProps, 'data-x-out-of-boundaries', popperHide), _popperProps);
 	        return children({
 	          popperProps: popperProps,
 	          restProps: restProps,
@@ -57982,7 +58104,8 @@
 
 	      var componentProps = _extends({}, restProps, {
 	        style: _extends({}, restProps.style, popperStyle),
-	        'data-placement': popperPlacement
+	        'data-placement': popperPlacement,
+	        'data-x-out-of-boundaries': popperHide
 	      });
 
 	      if (typeof component === 'string') {
@@ -58021,12 +58144,12 @@
 	exports.default = Popper;
 
 /***/ }),
-/* 492 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**!
 	 * @fileOverview Kickass library to create and place poppers near their reference elements.
-	 * @version 1.12.3
+	 * @version 1.12.6
 	 * @license
 	 * Copyright (c) 2016 Federico Zivolo and contributors
 	 *
@@ -58054,22 +58177,7 @@
 		(global.Popper = factory());
 	}(this, (function () { 'use strict';
 
-	var nativeHints = ['native code', '[object MutationObserverConstructor]'];
-
-	/**
-	 * Determine if a function is implemented natively (as opposed to a polyfill).
-	 * @method
-	 * @memberof Popper.Utils
-	 * @argument {Function | undefined} fn the function to check
-	 * @returns {Boolean}
-	 */
-	var isNative = (function (fn) {
-	  return nativeHints.some(function (hint) {
-	    return (fn || '').toString().indexOf(hint) > -1;
-	  });
-	});
-
-	var isBrowser = typeof window !== 'undefined';
+	var isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 	var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
 	var timeoutDuration = 0;
 	for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
@@ -58080,26 +58188,16 @@
 	}
 
 	function microtaskDebounce(fn) {
-	  var scheduled = false;
-	  var i = 0;
-	  var elem = document.createElement('span');
-
-	  // MutationObserver provides a mechanism for scheduling microtasks, which
-	  // are scheduled *before* the next task. This gives us a way to debounce
-	  // a function but ensure it's called *before* the next paint.
-	  var observer = new MutationObserver(function () {
-	    fn();
-	    scheduled = false;
-	  });
-
-	  observer.observe(elem, { attributes: true });
-
+	  var called = false;
 	  return function () {
-	    if (!scheduled) {
-	      scheduled = true;
-	      elem.setAttribute('x-index', i);
-	      i = i + 1; // don't use compund (+=) because it doesn't get optimized in V8
+	    if (called) {
+	      return;
 	    }
+	    called = true;
+	    Promise.resolve().then(function () {
+	      called = false;
+	      fn();
+	    });
 	  };
 	}
 
@@ -58116,11 +58214,7 @@
 	  };
 	}
 
-	// It's common for MutationObserver polyfills to be seen in the wild, however
-	// these rely on Mutation Events which only occur when an element is connected
-	// to the DOM. The algorithm used in this module does not use a connected element,
-	// and so we must ensure that a *native* MutationObserver is available.
-	var supportsNativeMutationObserver = isBrowser && isNative(window.MutationObserver);
+	var supportsMicroTasks = isBrowser && window.Promise;
 
 	/**
 	* Create a debounced version of a method, that's asynchronously deferred
@@ -58131,7 +58225,7 @@
 	* @argument {Function} fn
 	* @returns {Function}
 	*/
-	var debounce = supportsNativeMutationObserver ? microtaskDebounce : taskDebounce;
+	var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
 
 	/**
 	 * Check if the given variable is a function
@@ -58184,8 +58278,16 @@
 	 */
 	function getScrollParent(element) {
 	  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
-	  if (!element || ['HTML', 'BODY', '#document'].indexOf(element.nodeName) !== -1) {
+	  if (!element) {
 	    return window.document.body;
+	  }
+
+	  switch (element.nodeName) {
+	    case 'HTML':
+	    case 'BODY':
+	      return element.ownerDocument.body;
+	    case '#document':
+	      return element.body;
 	  }
 
 	  // Firefox want us to check `-x` and `-y` variations as well
@@ -58215,6 +58317,10 @@
 	  var nodeName = offsetParent && offsetParent.nodeName;
 
 	  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+	    if (element) {
+	      return element.ownerDocument.documentElement;
+	    }
+
 	    return window.document.documentElement;
 	  }
 
@@ -58310,8 +58416,8 @@
 	  var nodeName = element.nodeName;
 
 	  if (nodeName === 'BODY' || nodeName === 'HTML') {
-	    var html = window.document.documentElement;
-	    var scrollingElement = window.document.scrollingElement || html;
+	    var html = element.ownerDocument.documentElement;
+	    var scrollingElement = element.ownerDocument.scrollingElement || html;
 	    return scrollingElement[upperSide];
 	  }
 
@@ -58560,7 +58666,7 @@
 	}
 
 	function getViewportOffsetRectRelativeToArtbitraryNode(element) {
-	  var html = window.document.documentElement;
+	  var html = element.ownerDocument.documentElement;
 	  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
 	  var width = Math.max(html.clientWidth, window.innerWidth || 0);
 	  var height = Math.max(html.clientHeight, window.innerHeight || 0);
@@ -58621,10 +58727,10 @@
 	    if (boundariesElement === 'scrollParent') {
 	      boundariesNode = getScrollParent(getParentNode(popper));
 	      if (boundariesNode.nodeName === 'BODY') {
-	        boundariesNode = window.document.documentElement;
+	        boundariesNode = popper.ownerDocument.documentElement;
 	      }
 	    } else if (boundariesElement === 'window') {
-	      boundariesNode = window.document.documentElement;
+	      boundariesNode = popper.ownerDocument.documentElement;
 	    } else {
 	      boundariesNode = boundariesElement;
 	    }
@@ -58865,10 +58971,11 @@
 	  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
 
 	  modifiersToRun.forEach(function (modifier) {
-	    if (modifier.function) {
+	    if (modifier['function']) {
+	      // eslint-disable-line dot-notation
 	      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
 	    }
-	    var fn = modifier.function || modifier.fn;
+	    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
 	    if (modifier.enabled && isFunction(fn)) {
 	      // Add properties to offsets to make them a complete clientRect object
 	      // we do this before each modifier to make sure the previous one doesn't
@@ -58995,9 +59102,19 @@
 	  return this;
 	}
 
+	/**
+	 * Get the window associated with the element
+	 * @argument {Element} element
+	 * @returns {Window}
+	 */
+	function getWindow(element) {
+	  var ownerDocument = element.ownerDocument;
+	  return ownerDocument ? ownerDocument.defaultView : window;
+	}
+
 	function attachToScrollParents(scrollParent, event, callback, scrollParents) {
 	  var isBody = scrollParent.nodeName === 'BODY';
-	  var target = isBody ? window : scrollParent;
+	  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
 	  target.addEventListener(event, callback, { passive: true });
 
 	  if (!isBody) {
@@ -59015,7 +59132,7 @@
 	function setupEventListeners(reference, options, state, updateBound) {
 	  // Resize event listener on window
 	  state.updateBound = updateBound;
-	  window.addEventListener('resize', state.updateBound, { passive: true });
+	  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
 
 	  // Scroll event listener on scroll parents
 	  var scrollElement = getScrollParent(reference);
@@ -59046,7 +59163,7 @@
 	 */
 	function removeEventListeners(reference, state) {
 	  // Remove resize event listener on window
-	  window.removeEventListener('resize', state.updateBound);
+	  getWindow(reference).removeEventListener('resize', state.updateBound);
 
 	  // Remove scroll event listener on scroll parents
 	  state.scrollParents.forEach(function (target) {
@@ -60348,8 +60465,8 @@
 	    };
 
 	    // get reference and popper elements (allow jQuery wrappers)
-	    this.reference = reference.jquery ? reference[0] : reference;
-	    this.popper = popper.jquery ? popper[0] : popper;
+	    this.reference = reference && reference.jquery ? reference[0] : reference;
+	    this.popper = popper && popper.jquery ? popper[0] : popper;
 
 	    // Deep merge modifiers options
 	    this.options.modifiers = {};
@@ -60476,59 +60593,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 493 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*!
-	 * is-equal-shallow <https://github.com/jonschlinkert/is-equal-shallow>
-	 *
-	 * Copyright (c) 2015, Jon Schlinkert.
-	 * Licensed under the MIT License.
-	 */
-
-	'use strict';
-
-	var isPrimitive = __webpack_require__(494);
-
-	module.exports = function isEqual(a, b) {
-	  if (!a && !b) { return true; }
-	  if (!a && b || a && !b) { return false; }
-
-	  var numKeysA = 0, numKeysB = 0, key;
-	  for (key in b) {
-	    numKeysB++;
-	    if (!isPrimitive(b[key]) || !a.hasOwnProperty(key) || (a[key] !== b[key])) {
-	      return false;
-	    }
-	  }
-	  for (key in a) {
-	    numKeysA++;
-	  }
-	  return numKeysA === numKeysB;
-	};
-
-
-/***/ }),
-/* 494 */
-/***/ (function(module, exports) {
-
-	/*!
-	 * is-primitive <https://github.com/jonschlinkert/is-primitive>
-	 *
-	 * Copyright (c) 2014-2015, Jon Schlinkert.
-	 * Licensed under the MIT License.
-	 */
-
-	'use strict';
-
-	// see http://jsperf.com/testing-value-is-primitive/7
-	module.exports = function isPrimitive(value) {
-	  return value == null || (typeof value !== 'function' && typeof value !== 'object');
-	};
-
-
-/***/ }),
-/* 495 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60543,7 +60608,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -60602,7 +60667,7 @@
 	exports.default = Arrow;
 
 /***/ }),
-/* 496 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60617,7 +60682,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -60665,7 +60730,7 @@
 	exports.default = CodeExampleComponent;
 
 /***/ }),
-/* 497 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60759,7 +60824,7 @@
 	exports.default = CustomDateFormat;
 
 /***/ }),
-/* 498 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60843,7 +60908,7 @@
 	exports.default = CustomClassName;
 
 /***/ }),
-/* 499 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60927,7 +60992,7 @@
 	exports.default = CustomCalendarClassName;
 
 /***/ }),
-/* 500 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61013,7 +61078,7 @@
 	exports.default = CustomDayClassNames;
 
 /***/ }),
-/* 501 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61055,7 +61120,7 @@
 	}
 
 /***/ }),
-/* 502 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61164,7 +61229,7 @@
 	exports.default = SpecificDateRange;
 
 /***/ }),
-/* 503 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61260,7 +61325,7 @@
 	exports.default = CustomStartDate;
 
 /***/ }),
-/* 504 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61360,7 +61425,7 @@
 	exports.default = ExcludeDates;
 
 /***/ }),
-/* 505 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61461,7 +61526,7 @@
 	exports.default = highlightDates;
 
 /***/ }),
-/* 506 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61601,7 +61666,7 @@
 	exports.default = highlightDatesRanges;
 
 /***/ }),
-/* 507 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61702,7 +61767,7 @@
 	exports.default = includeDates;
 
 /***/ }),
-/* 508 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61802,7 +61867,7 @@
 	exports.default = FilterDates;
 
 /***/ }),
-/* 509 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61896,7 +61961,7 @@
 	exports.default = Disabled;
 
 /***/ }),
-/* 510 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61993,7 +62058,7 @@
 	exports.default = DisabledKeyboardNavigation;
 
 /***/ }),
-/* 511 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62078,7 +62143,7 @@
 	exports.default = ClearInput;
 
 /***/ }),
-/* 512 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62190,7 +62255,7 @@
 	exports.default = Disabled;
 
 /***/ }),
-/* 513 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62285,7 +62350,7 @@
 	exports.default = ConfigurePopper;
 
 /***/ }),
-/* 514 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62396,7 +62461,7 @@
 	exports.default = DateRange;
 
 /***/ }),
-/* 515 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62480,7 +62545,7 @@
 	exports.default = TabIndex;
 
 /***/ }),
-/* 516 */
+/* 518 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62567,7 +62632,7 @@
 	exports.default = YearDropdown;
 
 /***/ }),
-/* 517 */
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62651,7 +62716,7 @@
 	exports.default = MonthDropdown;
 
 /***/ }),
-/* 518 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62738,7 +62803,7 @@
 	exports.default = YearDropdown;
 
 /***/ }),
-/* 519 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62822,7 +62887,7 @@
 	exports.default = Today;
 
 /***/ }),
-/* 520 */
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62836,6 +62901,10 @@
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _moment = __webpack_require__(354);
+
+	var _moment2 = _interopRequireDefault(_moment);
 
 	var _reactDatepicker = __webpack_require__(352);
 
@@ -62910,8 +62979,8 @@
 	            dateFormat: 'DD-MMM YYYY HH:mm',
 	            todayButton: todayTxt,
 	            selected: selected,
-	            minDate: moment('2016-11-05T00:00:00+00:00').utcOffset(this.state.utcOffset),
-	            maxDate: moment('2016-12-04T00:00:00-04:00').utcOffset(this.state.utcOffset),
+	            minDate: (0, _moment2.default)('2016-11-05T00:00:00+00:00').utcOffset(this.state.utcOffset),
+	            maxDate: (0, _moment2.default)('2016-12-04T00:00:00-04:00').utcOffset(this.state.utcOffset),
 	            onChange: this.handleChange }),
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
@@ -62979,7 +63048,7 @@
 	exports.default = TimeZoneDate;
 
 /***/ }),
-/* 521 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63063,7 +63132,7 @@
 	exports.default = Inline;
 
 /***/ }),
-/* 522 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63150,7 +63219,7 @@
 	exports.default = OpenToDate;
 
 /***/ }),
-/* 523 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63239,7 +63308,7 @@
 	exports.default = FixedCalendar;
 
 /***/ }),
-/* 524 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63323,7 +63392,7 @@
 	exports.default = Default;
 
 /***/ }),
-/* 525 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63338,7 +63407,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _propTypes = __webpack_require__(473);
+	var _propTypes = __webpack_require__(476);
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -63442,7 +63511,7 @@
 	exports.default = CustomInput;
 
 /***/ }),
-/* 526 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63526,7 +63595,7 @@
 	exports.default = MultiMonth;
 
 /***/ }),
-/* 527 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63611,7 +63680,7 @@
 	exports.default = MultiMonthDrp;
 
 /***/ }),
-/* 528 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63702,7 +63771,7 @@
 	exports.default = Children;
 
 /***/ }),
-/* 529 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63786,7 +63855,7 @@
 	exports.default = WithPortal;
 
 /***/ }),
-/* 530 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63881,7 +63950,7 @@
 	exports.default = InlinePortalVersion;
 
 /***/ }),
-/* 531 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63977,7 +64046,7 @@
 	exports.default = RawChanges;
 
 /***/ }),
-/* 532 */
+/* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64045,7 +64114,7 @@
 	            _react2.default.createElement(
 	              'strong',
 	              null,
-	              '    showTimeSelect\n    timeIntervals={15}\n/>\n'
+	              '    showTimeSelect\n    timeFormat="HH:mm"\n    timeIntervals={15}\n    dateFormat="LLL"\n/>\n'
 	            )
 	          )
 	        ),
@@ -64056,7 +64125,9 @@
 	            selected: this.state.startDate,
 	            onChange: this.handleChange,
 	            showTimeSelect: true,
-	            timeIntervals: 15 })
+	            timeFormat: 'HH:mm',
+	            timeIntervals: 15,
+	            dateFormat: 'LLL' })
 	        )
 	      );
 	    }
@@ -64068,7 +64139,7 @@
 	exports.default = ShowTime;
 
 /***/ }),
-/* 533 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64148,6 +64219,12 @@
 	              '  excludeTimes={[moment().hours(17).minutes(0), moment().hours(18).minutes(30), moment().hours(19).minutes(30)], moment().hours(17).minutes(30)}'
 	            ),
 	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              '  dateFormat="LLL"'
+	            ),
+	            _react2.default.createElement('br', null),
 	            '/>'
 	          )
 	        ),
@@ -64158,7 +64235,8 @@
 	            selected: this.state.startDate,
 	            onChange: this.handleChange,
 	            showTimeSelect: true,
-	            excludeTimes: [(0, _moment2.default)().hours(17).minutes(0), (0, _moment2.default)().hours(18).minutes(30), (0, _moment2.default)().hours(19).minutes(30), (0, _moment2.default)().hours(17).minutes(30)] })
+	            excludeTimes: [(0, _moment2.default)().hours(17).minutes(0), (0, _moment2.default)().hours(18).minutes(30), (0, _moment2.default)().hours(19).minutes(30), (0, _moment2.default)().hours(17).minutes(30)],
+	            dateFormat: 'LLL' })
 	        )
 	      );
 	    }
@@ -64170,7 +64248,7 @@
 	exports.default = ExcludeTimes;
 
 /***/ }),
-/* 534 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64249,7 +64327,9 @@
 	              _react2.default.createElement('br', null),
 	              '  minTime={moment().hours(17).minutes(0)}',
 	              _react2.default.createElement('br', null),
-	              '  maxTime={moment().hours(20).minutes(30)}'
+	              '  maxTime={moment().hours(20).minutes(30)}',
+	              _react2.default.createElement('br', null),
+	              '  dateFormat="LLL"'
 	            ),
 	            _react2.default.createElement('br', null),
 	            '/>'
@@ -64263,7 +64343,8 @@
 	            onChange: this.handleChange,
 	            showTimeSelect: true,
 	            minTime: (0, _moment2.default)().hours(17).minutes(0),
-	            maxTime: (0, _moment2.default)().hours(20).minutes(30) })
+	            maxTime: (0, _moment2.default)().hours(20).minutes(30),
+	            dateFormat: 'LLL' })
 	        )
 	      );
 	    }
@@ -64275,15 +64356,99 @@
 	exports.default = ExcludeTimePeriod;
 
 /***/ }),
-/* 535 */
+/* 537 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDatepicker = __webpack_require__(352);
+
+	var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+
+	var _moment = __webpack_require__(354);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DontCloseOnSelect = function (_React$Component) {
+	  _inherits(DontCloseOnSelect, _React$Component);
+
+	  function DontCloseOnSelect(props) {
+	    _classCallCheck(this, DontCloseOnSelect);
+
+	    var _this = _possibleConstructorReturn(this, (DontCloseOnSelect.__proto__ || Object.getPrototypeOf(DontCloseOnSelect)).call(this, props));
+
+	    _this.handleChange = function (date) {
+	      _this.setState({
+	        startDate: date
+	      });
+	    };
+
+	    _this.state = {
+	      startDate: (0, _moment2.default)()
+	    };
+	    return _this;
+	  }
+
+	  _createClass(DontCloseOnSelect, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'pre',
+	          { className: 'column example__code' },
+	          _react2.default.createElement(
+	            'code',
+	            { className: 'jsx' },
+	            '\n<DatePicker\n    selected={this.state.startDate}\n    onChange={this.handleChange}\n    shouldCloseOnSelect={false}\n/>\n'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'column' },
+	          _react2.default.createElement(_reactDatepicker2.default, {
+	            selected: this.state.startDate,
+	            onChange: this.handleChange,
+	            shouldCloseOnSelect: false })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return DontCloseOnSelect;
+	}(_react2.default.Component);
+
+	exports.default = DontCloseOnSelect;
+
+/***/ }),
+/* 538 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 536 */
-535,
-/* 537 */
+/* 539 */
+538,
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64350,16 +64515,14 @@
 	exports.default = HeroExample;
 
 /***/ }),
-/* 538 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */

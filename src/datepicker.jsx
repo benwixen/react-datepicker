@@ -219,9 +219,10 @@ export default class DatePicker extends React.Component {
     }
     this.setState({ inputValue: event.target.value })
     const date = parseDate(event.target.value, this.props)
-    if (date || !event.target.value) {
-      this.setSelected(date, event, true)
-    }
+    // if (date || !event.target.value) {
+    //   this.setSelected(date, event, true)
+    // }
+    this.setSelected(date, event, true)
   }
 
   handleSelect = (date, event) => {
